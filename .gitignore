@@ -1,0 +1,40 @@
+# Python cache and local runtime files
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Virtual environments and local configuration
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+env/
+
+# Local secrets and credentials
+*.pem
+*.key
+*.p12
+*.pfx
+credentials
+credentials.*
+
+# Generated outputs and bulky experiment artifacts
+tmp_results/
+*.gpkg
+*.sqlite
+*.db
+*.xlsx
+*.npz
+*.parquet
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+.DS_Store

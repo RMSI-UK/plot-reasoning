@@ -1,0 +1,111 @@
+{
+  "profile_name": "mansfield",
+  "council_name": "Mansfield",
+  "council_root": "/data/mansfield",
+  "base_data_root": "/data/base-data",
+  "output_root": "/env/code/spatial-capture-monmouthshire/geocoding-box/tmp_results",
+  "local_bbox": [449000, 343000, 462500, 371000],
+  "locality_names": [
+    "Mansfield Woodhouse",
+    "Forest Town",
+    "Market Warsop",
+    "Warsop",
+    "Meden Vale",
+    "Spion Kop",
+    "Clipstone",
+    "Mansfield"
+  ],
+  "generic_place_names": [
+    "Mansfield",
+    "Mansfield Woodhouse",
+    "Warsop",
+    "Market Warsop",
+    "Forest Town",
+    "Nottingham",
+    "Nottinghamshire"
+  ],
+  "build_generic_place_names": ["Mansfield", "Warsop"],
+  "openname_generic_place_names": [
+    "Mansfield",
+    "Mansfield Woodhouse",
+    "Warsop",
+    "Market Warsop",
+    "Forest Town",
+    "Nottingham"
+  ],
+  "plan_generic_place_names": [
+    "Mansfield",
+    "Mansfield Woodhouse",
+    "Sutton in Ashfield",
+    "Kirkby in Ashfield",
+    "Nottinghamshire",
+    "Derbyshire",
+    "Bassetlaw",
+    "Newark and Sherwood",
+    "Ashfield"
+  ],
+  "allowed_locality_names": [
+    "Mansfield",
+    "Mansfield Woodhouse",
+    "Forest Town",
+    "Market Warsop",
+    "Warsop",
+    "Meden Vale",
+    "Spion Kop",
+    "Clipstone",
+    "Nottinghamshire"
+  ],
+  "bad_locality_names": [
+    "East Leake",
+    "Derby",
+    "Oxford",
+    "Dundee",
+    "Hackney",
+    "London",
+    "Fareham",
+    "Redditch",
+    "Saltash",
+    "Birmingham",
+    "March",
+    "Bangor",
+    "Felixstowe",
+    "Nottingham City"
+  ],
+  "county_names": ["Nottinghamshire"],
+  "district_names": ["Mansfield"],
+  "paths": {
+    "text_xlsx": "{council_root}/textual/mansfield_cr&txt_with_points.xlsx",
+    "ocr_jsonl": "{council_root}/ocr/all_v5ocr.jsonl",
+    "open_roads": "{base_data_root}/oproad_gpkg_gb/Data/oproad_gb.gpkg",
+    "open_names": "{base_data_root}/opname_csv_gb/os_open_names_uk.sqlite",
+    "open_names_dir": "{base_data_root}/opname_csv_gb/Data",
+    "find_plan": "{council_root}/skill/find-plan/full-scanraw/find_plan_results.jsonl",
+    "plan_images": "{council_root}/backup/plan_images.csv",
+    "full_gpkg": "{council_root}/spatial/polygon-layer/mansfield-manual-polygon-link.gpkg",
+    "input_gpkg": "{council_root}/spatial/polygon-layer/mansfield-manual-polygon-link.gpkg",
+    "raw_wfs_gpkg": "{council_root}/spatial/base-map/mansfield_wfs_polygon.gpkg",
+    "merged_wfs_gpkg": "{council_root}/spatial/base-map/mansfield_wfs_polygon_merged.gpkg",
+    "council_gpkg": "{council_root}/spatial/base-map/mansfield_councils_land.gpkg",
+    "uprn_gpkg": "{base_data_root}/osopenuprn_202602.gpkg",
+    "address_point_pipeline_output_prefix": "{output_root}/mansfield_address_point_council_pipeline"
+  },
+  "layers": {
+    "input_layer": "mansfield-manual-polygon-link",
+    "full_layer": "mansfield-manual-polygon-link",
+    "raw_wfs_layer": "mansfield_polygons_in_buffers",
+    "merged_wfs_layer": "mansfield_polygons_in_buffers_merged",
+    "council_layer": "cadastral_parcels",
+    "uprn_layer": "osopenuprn_address"
+  },
+  "parameters": {
+    "address_column": "chargegeog",
+    "max_rois": 8,
+    "max_text_candidates": 20,
+    "evidence_roi_count": 5,
+    "roi_side": 180,
+    "corridor_step_m": 50,
+    "corridor_pad_m": 180,
+    "max_per_road": 2,
+    "max_total_samples": 8
+  }
+}

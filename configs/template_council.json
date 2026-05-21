@@ -1,0 +1,75 @@
+{
+  "profile_name": "new_council",
+  "council_name": "New Council",
+  "council_root": "/data/new-council",
+  "base_data_root": "/data/base-data",
+  "output_root": "/env/code/spatial-capture-monmouthshire/geocoding-box/tmp_results",
+  "local_bbox": [0, 0, 0, 0],
+  "locality_names": [
+    "Primary Town",
+    "Secondary Village"
+  ],
+  "allowed_locality_names": [
+    "Primary Town",
+    "Secondary Village",
+    "County Name"
+  ],
+  "bad_locality_names": [
+    "Known Wrong Same-Name Place"
+  ],
+  "generic_place_names": [
+    "Primary Town",
+    "County Name"
+  ],
+  "build_generic_place_names": [
+    "Primary Town"
+  ],
+  "openname_generic_place_names": [
+    "Primary Town",
+    "County Name"
+  ],
+  "plan_generic_place_names": [
+    "Primary Town",
+    "County Name",
+    "Neighbouring District"
+  ],
+  "county_names": ["County Name"],
+  "district_names": ["District Name"],
+  "paths": {
+    "text_xlsx": "{council_root}/textual/cases_with_points.xlsx",
+    "ocr_jsonl": "{council_root}/ocr/all_v5ocr.jsonl",
+    "open_roads": "{base_data_root}/oproad_gpkg_gb/Data/oproad_gb.gpkg",
+    "open_names": "{base_data_root}/opname_csv_gb/os_open_names_uk.sqlite",
+    "open_names_dir": "{base_data_root}/opname_csv_gb/Data",
+    "find_plan": "{council_root}/skill/find-plan/full-scanraw/find_plan_results.jsonl",
+    "plan_images": "{council_root}/backup/plan_images.csv",
+    "full_gpkg": "{council_root}/spatial/polygon-layer/manual-polygon-link.gpkg",
+    "input_gpkg": "{council_root}/spatial/polygon-layer/manual-polygon-link.gpkg",
+    "raw_wfs_gpkg": "{council_root}/spatial/base-map/council_wfs_polygon.gpkg",
+    "merged_wfs_gpkg": "{council_root}/spatial/base-map/council_wfs_polygon_merged.gpkg",
+    "council_gpkg": "{council_root}/spatial/base-map/council_cadastral_land.gpkg",
+    "uprn_gpkg": "{base_data_root}/osopenuprn_202602.gpkg",
+    "address_point_pipeline_output_prefix": "{output_root}/new_council_address_point_council_pipeline",
+    "output_prefix": "{output_root}/new_council_no_ai_boxes"
+  },
+  "layers": {
+    "input_layer": "input_or_truth_layer",
+    "truth_layer": "input_or_truth_layer",
+    "full_layer": "manual-polygon-link",
+    "raw_wfs_layer": "wfs_polygons",
+    "merged_wfs_layer": "wfs_polygons_merged",
+    "council_layer": "cadastral_parcels",
+    "uprn_layer": "osopenuprn_address"
+  },
+  "parameters": {
+    "address_column": "chargegeog",
+    "max_rois": 8,
+    "max_text_candidates": 20,
+    "evidence_roi_count": 5,
+    "roi_side": 180,
+    "corridor_step_m": 50,
+    "corridor_pad_m": 180,
+    "max_per_road": 2,
+    "max_total_samples": 8
+  }
+}
