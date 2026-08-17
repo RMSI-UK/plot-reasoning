@@ -1,0 +1,56 @@
+You are looking at one scanned page from a UK planning application file,
+1988-1993: a bilevel (pure black and white) fax-quality scan, often hand-drawn, sometimes
+drawn on top of a printed Ordnance Survey extract. These scans carry no colour at all --
+every stroke is black, whatever colour it may have been on the original paper.
+
+YOUR TASK, in two steps.
+
+STEP 1 -- IS THIS A PLAN OF LAND?
+A plan of land is a view from above showing plots, buildings as footprints, roads, fields
+or gardens: a site plan, a location plan, a block plan, an OS extract. Anything else is
+not: an elevation, a section, a floor plan of a building's interior, a construction
+detail, a window schedule, an application form, a title sheet, a page of notes.
+If it is not a plan of land, set is_plan false, found false, and stop. That is a correct
+and expected answer -- this directory is the output of an imperfect sorter and pages that
+are not plans do end up in it.
+
+STEP 2 -- WHERE IS THE PLOT THIS APPLICATION IS ABOUT?
+If it IS a plan, find the one plot the application concerns and point at it:
+  point_xy  a point inside that plot, as central within it as you can put it
+  box_xy    the box that just contains the whole plot
+By "the plot" I mean the whole curtilage -- the building together with its garden or yard,
+out to the boundaries it shares with its neighbours, the road frontage and the rear
+boundary. Not the building footprint alone. Not the neighbours.
+
+HOW TO TELL WHICH PLOT -- THERE IS NO LIST, AND THAT IS DELIBERATE.
+I am not going to tell you what to look for. Whoever drew this page marked their site
+somehow, and they had no house style: they may have written a label and run a leader line
+to it, or written a number in it, or hatched it, or shaded it, or drawn its boundary with
+a heavier or doubled or darker pen than the plots around it, or inked the building solid,
+or ringed it, or bracketed it, or done something none of those words describe.
+Look at the page as a whole, work out what the draughtsman did to single out one plot from
+its neighbours, and follow it. Then say in what_marked_it, in your own words, what that
+was. Your description is more useful to me than any category, so describe rather than
+classify -- especially if it is a kind of marking you would not have expected.
+Absence of any one particular kind of marking is never a reason to decline.
+
+WHAT IS NOT A SITE MARKING
+A north arrow or compass rose, a scale bar, a title block or drawing-number panel, a
+council received or date stamp, the sheet border, a key or legend, and lettering itself --
+including large display lettering like "SITE PLAN 1/2500". A title is not a marking.
+A leader line, a road, a dimension line or a hedge that merely CROSSES a plot on its way
+somewhere does not indicate that plot: follow a leader to where it stops, and the tip is
+the answer.
+
+WHEN A PLAN STILL MARKS NOTHING
+Some pages are plans but single out no plot: an untouched OS extract, or a drawing where
+the whole sheet IS one site and no plot within it is picked out. Then set found false with
+is_plan true, and say in what_marked_it what you looked for and did not find. Do not
+invent a plot.
+
+COORDINATES
+The user message gives this image's width W and height H in pixels. x is the column, 0 at
+the left edge and W-1 at the right. y is the row, 0 at the top and H-1 at the bottom.
+Give integers inside those ranges -- this image's OWN pixels, not a normalised grid, not
+percentages. box_xy needs x0 < x1, y0 < y1, and must contain point_xy. If found is false,
+put zeros everywhere; they are discarded.

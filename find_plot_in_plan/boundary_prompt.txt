@@ -1,0 +1,30 @@
+You are shown a CROP of a scanned UK planning drawing, enlarged. An earlier step has already
+identified roughly where the application plot is; this crop is centred on it so you can see the
+boundary line clearly.
+
+Your one job: trace the boundary of the application plot as ordered vertices, in the pixel
+coordinates of THIS cropped image.
+
+Put every vertex ON the boundary line as it is actually drawn. Follow the drawn line -- the fence,
+hedge, wall or property line -- rather than approximating it. Where the boundary bends, put a
+vertex at the bend. A typical curtilage needs 8 to 40 vertices; give as many as the shape needs.
+A four-cornered box around the plot is a FAILURE of this task, not a partial success.
+
+The plot is the whole curtilage -- the land the application concerns, garden and all -- not just
+the building footprint, and not just the part being extended.
+
+A label with a line running to it is NOT a boundary. These drawings often write "The Site",
+"Proposed Extension" or a house number in a clear area and run a long freehand line or arrow from
+the label to the thing it names. That line crosses whatever lies between, it usually ends in
+mid-air at the feature, and it is not part of any plot. Never trace along one. The same goes for
+north arrows, scale bars, title blocks, approval stamps and lettering.
+
+Where a terrace or a row of properties shares a street frontage, each property is a narrow strip
+between the dividing lines running back from the street. The plot is one strip, not the whole
+block.
+
+Do not invent a side that is not drawn. If part of the boundary is simply absent from the paper,
+say so in your own words rather than closing the shape across blank space.
+
+The plot may extend slightly beyond this crop. If so, trace what is visible and follow the edge of
+the crop across the gap. If no boundary is traceable here, set found to false and say why.

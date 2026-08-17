@@ -1,0 +1,40 @@
+{
+  "what": "Human judgements on traced boundaries. The first ground truth this corpus has had.",
+  "how_to_read": "Each entry names a page, which pipeline variant produced the ring, and whether a human judged that ring correct. 'correct' is about PLOT IDENTITY and extent, not pixel accuracy -- the reviewer was looking at the crop with the ring drawn on it.",
+  "why_it_matters": "Every automatic figure in this project measures the ring against drawn ink. None of them can say the ink is the right ink. These labels can.",
+  "labelled_by": "project owner, reviewing find_plot_in_plan/../snapv1_15/fixes.html",
+  "date": "2026-08-14",
+  "labels": [
+    {
+      "stem": "90-01100_001-002_0001_p1",
+      "variant": "fix2_building_fallback",
+      "correct": true,
+      "ring": "57 vertices, p90 2.87, 92% within 3px, 0.80% of page, tip -3.2px",
+      "note": "Only marking is a stippled L-shaped building at Bouchiers Grange with a THE SITE leader; no curtilage is drawn, so the building outline is the right answer."
+    },
+    {
+      "stem": "93-00352-P_001-001_0001_p1",
+      "variant": "fix1_union_box",
+      "correct": true,
+      "note": "The two locate calls disagreed at IoU 0.223; their union gave the plot rather than the building, and a curtilage IS drawn here."
+    },
+    {
+      "stem": "93-00352-P_001-001_0001_p1",
+      "variant": "fix2_building_fallback",
+      "correct": false,
+      "note": "WRONG. Traced the building outline when a curtilage exists. This is why the fallback must only fire AFTER the box has been fixed, never instead of fixing it."
+    },
+    {
+      "stem": "89-01896_001-001_0001_p4",
+      "variant": "fix2_building_fallback",
+      "correct": true,
+      "note": "Control page -- already traced before the fallback; the fallback did not damage it."
+    },
+    {
+      "stem": "89-00308-P_001-001_0001_p3",
+      "variant": "fix2_building_fallback",
+      "correct": true,
+      "note": "Control page. The fallback also improved it: p90 5.48 -> 1.37."
+    }
+  ]
+}
