@@ -131,6 +131,92 @@ def crop_of(gray: np.ndarray, win: Window) -> np.ndarray:
     return cv2.resize(patch, win.sent_size, interpolation=cv2.INTER_CUBIC)
 
 
+def valid_point(point) -> bool:
+    return bool(point and len(point) == 2 and point != [0, 0])
+
+
+def point_inside_ring(point, ring, tol: float = 6.0) -> bool | None:
+    """Whether a locator point is inside/on a candidate ring, with boundary tolerance."""
+    if not valid_point(point) or not ring:
+        return None
+    distance = cv2.pointPolygonTest(
+        np.asarray(ring, np.int32).reshape(-1, 1, 2),
+        (float(point[0]), float(point[1])), True)
+    return bool(distance >= -tol)
+
+
+def guidance_message(win: Window, guidance: dict | None, retry_note: str = "") -> str:
+    """Describe whole-page locator evidence in the crop coordinate system."""
+    if not guidance:
+        return retry_note
+
+    def crop_xy(point):
+        if not valid_point(point):
+            return None
+        p = win.to_crop([point])[0]
+        return [int(round(p[0])), int(round(p[1]))]
+
+    target = crop_xy(guidance.get("point"))
+    tip = crop_xy(guidance.get("tip")) if guidance.get("marking_spatial") else None
+    lines = [
+        "The second image is an annotated copy of the first. Its coloured marks are artificial "
+        "guidance from a whole-page locator; NEVER trace the coloured marks themselves.",
+    ]
+    if target:
+        lines.append(
+            f"The cyan TARGET circle is at crop coordinate {target}. Your closed ring MUST "
+            "contain this point because it lies inside the intended application plot.")
+    if tip:
+        lines.append(
+            f"The magenta MARKING cross is at crop coordinate {tip}. It is the spatial marking "
+            "that identifies the target, so the ring must contain or touch it.")
+    if guidance.get("locate_said"):
+        lines.append(f"The whole-page locator said: {guidance['locate_said']}")
+    if guidance.get("marking_kind"):
+        lines.append(f"Marking type: {guidance['marking_kind']}.")
+    if guidance.get("target_geometry"):
+        lines.append(f"Locator geometry assessment: {guidance['target_geometry']}.")
+    if retry_note:
+        lines.append(retry_note)
+    return "\n".join(lines)
+
+
+def annotated_crop(crop: np.ndarray, win: Window, guidance: dict | None) -> np.ndarray | None:
+    """A second, visibly annotated image that carries locator evidence into tracing."""
+    if not guidance:
+        return None
+    image = cv2.cvtColor(crop, cv2.COLOR_GRAY2RGB)
+    height, width = crop.shape
+
+    def crop_xy(point):
+        if not valid_point(point):
+            return None
+        p = win.to_crop([point])[0]
+        x, y = int(round(p[0])), int(round(p[1]))
+        return (x, y) if 0 <= x < width and 0 <= y < height else None
+
+    box = guidance.get("box")
+    if box and len(box) == 4:
+        p0, p1 = win.to_crop([[box[0], box[1]], [box[2], box[3]]])
+        x0, y0 = np.round(p0).astype(int)
+        x1, y1 = np.round(p1).astype(int)
+        cv2.rectangle(image, (x0, y0), (x1, y1), (255, 155, 0), 5, cv2.LINE_AA)
+        cv2.putText(image, "LOCATOR BOX", (max(5, x0 + 8), max(24, y0 - 10)),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255, 155, 0), 2, cv2.LINE_AA)
+    target = crop_xy(guidance.get("point"))
+    if target:
+        cv2.circle(image, target, 13, (0, 190, 255), 5, cv2.LINE_AA)
+        cv2.putText(image, "TARGET", (target[0] + 16, max(24, target[1] - 12)),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 190, 255), 2, cv2.LINE_AA)
+    if guidance.get("marking_spatial"):
+        tip = crop_xy(guidance.get("tip"))
+        if tip:
+            cv2.drawMarker(image, tip, (255, 0, 210), cv2.MARKER_CROSS, 30, 5, cv2.LINE_AA)
+            cv2.putText(image, "MARKING", (tip[0] + 16, min(height - 8, tip[1] + 28)),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255, 0, 210), 2, cv2.LINE_AA)
+    return image
+
+
 def load_prompt() -> str:
     text = PROMPT_PATH.read_text(encoding="utf-8")
     if PROMPT_SHA16:
@@ -179,7 +265,8 @@ class Boundary:
 
 
 def trace_one(agent: Agent, model, gray: np.ndarray, stem: str, win: Window,
-              case_block: str = "") -> Boundary:
+              case_block: str = "", guidance: dict | None = None,
+              retry_note: str = "") -> Boundary:
     """One tracing call. Never raises: a failure comes back as Boundary.error."""
     import time
 
@@ -190,13 +277,19 @@ def trace_one(agent: Agent, model, gray: np.ndarray, stem: str, win: Window,
     sw, sh = crop.shape[1], crop.shape[0]
     buf = io.BytesIO()
     Image.fromarray(crop).convert("RGB").save(buf, format="PNG")
+    messages = [BinaryContent(data=buf.getvalue(), media_type="image/png")]
+    marked = annotated_crop(crop, win, guidance)
+    if marked is not None:
+        marked_buf = io.BytesIO()
+        Image.fromarray(marked).save(marked_buf, format="PNG")
+        messages.append(BinaryContent(data=marked_buf.getvalue(), media_type="image/png"))
+    guide = guidance_message(win, guidance, retry_note)
 
     started = time.time()
     try:
         run = agent.run_sync(
-            [BinaryContent(data=buf.getvalue(), media_type="image/png"),
-             f"This crop is {sw} x {sh} pixels. Trace the application plot boundary."
-             + case_block],
+            messages + [f"This crop is {sw} x {sh} pixels. Trace the application plot boundary."
+                        + case_block + (f"\n\n{guide}" if guide else "")],
             model=model, usage_limits=UsageLimits(request_limit=4))
     except Exception as exc:                      # noqa: BLE001 - one page must not stop a batch
         res.error = f"{exc!s:.300}"
@@ -216,6 +309,29 @@ def trace_one(agent: Agent, model, gray: np.ndarray, stem: str, win: Window,
         pts = [[v.x, v.y] for v in out.vertices]
         res.vertices_page = np.round(win.to_page(pts)).astype(int).tolist()
     return res
+
+
+def candidate_rank(candidate: dict) -> tuple:
+    """Rank trace candidates by identity first, then completeness, then line quality.
+
+    The first v1.1 rule only accepted a larger regrown polygon. That kept a known-bad clipped
+    answer on 92-00392 even though the wider crop produced a clean closed outline. Identity is a
+    hard requirement; a tidy ring around a neighbour must never beat the intended plot.
+    """
+    identity_ok = candidate.get("identity_ok") is True
+    no_cut = not (candidate.get("edges") or {}).get("cut_sides")
+    not_fallback = not candidate.get("fallback")
+    blank = float(candidate.get("blank_share", 1.0))
+    within = float(candidate.get("frac_within_3px", 0.0))
+    p90 = float(candidate.get("ring_to_ink_p90_px", 1e9))
+    return (identity_ok, no_cut, not_fallback, -blank, within, -p90)
+
+
+def choose_candidate(first: dict, second: dict) -> tuple[dict, str]:
+    """Choose between independently traced candidates without anchoring to the first mistake."""
+    if candidate_rank(second) > candidate_rank(first):
+        return second, f"selected {second.get('source', 'second')} by identity/completeness/ink rank"
+    return first, f"kept {first.get('source', 'first')} by identity/completeness/ink rank"
 
 
 # --------------------------------------------------------------------------- checks

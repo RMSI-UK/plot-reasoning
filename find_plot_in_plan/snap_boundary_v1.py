@@ -1,68 +1,21 @@
 #!/usr/bin/env python3
-"""snap_boundary_v1 -- the frozen pipeline for tracing a UK planning application's plot boundary.
+"""Identity-guided v1.2 pipeline for tracing UK planning-application plot boundaries.
 
     python snap_boundary_v1.py --src /path/to/panels --out results/
     python snap_boundary_v1.py --src ... --pages stems.json --workers 20
-    python snap_boundary_v1.py --src ... --locate-once --no-regrow   # cheaper, fewer guards
 
-Five steps. Each one is here because the alternative was measured and was worse; the figures below
-are from 20-page batches on the Braintree wp7 panels unless stated.
+The whole-page locator runs twice. A trace is attempted only when two calls agree (box IoU >= 0.5);
+a third locator call may adjudicate an inconsistent pair. The chosen locator supplies the crop box,
+an identity point, an optional spatial-marking tip, marking type, and target-geometry type.
 
-  1 LOCATE   gpt-5.6-luna, whole sheet, with the council's reference/address/proposal.
-             Returns the plot box, the point, and -- new in v1 -- what kind of marking identifies
-             the plot and where the leader line ENDS.
-             Run TWICE. Box IoU between runs had a median of 0.85 across two full runs but fell
-             below 0.5 on 3 of 19 pages, and on one of those the box moved to a nine-times-larger
-             field and took the boundary with it. When the two disagree the smaller box is used and
-             the page is flagged. gpt-5.6-luna beat six other candidates on containment (22/26
-             against terra's 20/25) at an eighth of terra's price.
+The tracer receives both the clean crop and an annotated copy showing that identity evidence. Its
+ring must contain the identity point and, for spatial markings, the marking tip. Candidate selection
+prefers identity containment and an uncut crop before line-fit metrics, so a smaller correct retrace
+can replace a larger wrong result. Non-spatial text, building-only geometry, location indicators,
+failed locator consensus, and fallback proxies are never labelled automatically usable.
 
-  2 WINDOW   square, 1.5x the longer box side, and it must CONTAIN the box. Forcing a square and
-             clamping its side to the page's short edge produced a window shorter than the box on
-             portrait sheets -- 90-01394 lost 60 px off each end of an 831 px plot and the model,
-             shown only the middle, declined twice. Falls back to a rectangle rather than cropping
-             the box.
-             Padding was swept: 1.25 / 1.5 / 2.0 gave p90 6.58 / 4.78 / 6.14, so 1.5 stays.
-             The union of the box with a box round the label was tried and rejected: it does put
-             the label in frame (18/18) but the window grows by a median x1.43 and by x25 on one
-             page, and traced pages fall from 19/20 to 15/20.
-
-  3 ZOOM     bicubic to a 1024 px long side, NEVER below 1.0. Windows wider than 1024 were being
-             shrunk; pages at zoom < 1.15 had a p90 of 4.71 against 1.91 for the rest, worst 55.7.
-             Cropping beats handing over the whole sheet mainly by making the model willing to
-             answer -- 19/20 against 14/20 -- rather than by precision (p90 2.32 against 3.21).
-             Upscaling the whole sheet 2x instead of cropping made both models worse, so the gain
-             is from removing the rest of the drawing, not from more pixels.
-
-  4 TRACE    gpt-5.6-terra on the crop. Against luna-pro on identical crops: p90 2.32 against 3.55,
-             93% against 88% within 3 px, 19/20 against 18/20, and twice as fast, for 76% more
-             money -- four pounds over the whole 783-page corpus.
-             Four non-OpenAI models were tested on the same crops under three different prompts.
-             All landed at p90 13-30 with 18-44% of the ring over blank paper against terra's 0%.
-             Stripping the prompt back improved their scores only by collapsing the answer to a
-             quadrilateral, so it is capability rather than wording.
-
-  5 CHECKS   Nothing is corrected. Six independent tests say which pages a human should look at:
-               the two locate calls disagree about where the plot is
-               the ring runs along a crop edge that lies inside the page (the window cut the plot)
-               the ring runs along the page's own edge (the plot leaves the paper -- not fixable)
-               part of the ring lies over blank paper, so those sides were not traced from anything
-               the drawn line network does not enclose the ring (OpenCV snap)
-               THE RING DOES NOT CONTAIN THE POINT THE ARROW IS AIMED AT
-             The last is the only one about plot IDENTITY. Every other check, and every metric in
-             this project, asks whether the line follows drawn ink -- and a ring can do that
-             immaculately while enclosing the neighbour's plot. On 20 pages, 5 of terra's 19 rings
-             failed it, three of them scoring p90 0.00 to 0.95 and passing everything else.
-
-  RE-CROP    if the ring ran along a crop edge inside the page, the window is widened ON THOSE SIDES
-             ONLY and the trace repeated. Widening uniformly does not work -- padding 1.25 to 2.0
-             moved truncation from 9/20 pages to 7/20 -- because it enlarges symmetrically around an
-             off-centre box. The second result is kept only if it EXTENDS the first (keeps >=90% of
-             its area and grows); "the ring no longer touches an edge" is satisfied by throwing the
-             answer away, and one page passed that test while shrinking 31%.
-
-THERE IS NO GROUND TRUTH FOR THIS CORPUS. Every distance figure measures the ring against drawn
-ink. The arrow-tip check is the only evidence here about whether it is the right ink.
+There is no human ground truth for this corpus. Ink-distance metrics only measure whether a ring
+follows drawn lines; they do not prove that those lines belong to the intended legal parcel.
 """
 from __future__ import annotations
 
@@ -73,6 +26,7 @@ import sys
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from itertools import combinations
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -97,7 +51,7 @@ import boundary as B                                              # noqa: E402
 import locate as L                                                # noqa: E402
 from metadata import records_for                                  # noqa: E402
 
-VERSION = "snap_boundary_v1.1"
+VERSION = "snap_boundary_v1.2"
 
 # Appended to the tracing prompt ONLY on a retry, after a first attempt has declined.
 #
@@ -132,9 +86,20 @@ the draughtsman's own statement of which plot the application concerns, so place
 you can: on the feature the line touches, not in the middle of the label and not halfway along.
 
 If the marking is not a label with a line -- hatching, a heavier outline, a number written inside
-the plot -- give a point at the middle of that marking instead and say so.
+the plot, or a circle around the site -- give a point ON THE TARGET DRAWING at the middle of that
+spatial marking and set marking_is_spatial true.
 
-If nothing on the page marks the plot at all, set marking_kind to "none" and leave the point zero."""
+If words identify a property but have no line or arrow pointing from the words to the drawing, use
+marking_kind "text", set marking_is_spatial false, and leave marking_tip_xy zero. Never put the
+tip in the words themselves: that is not a point on the target plot.
+
+Set target_geometry to "curtilage" when parcel boundaries are visible, "explicit_outline" when a
+closed marked line is itself the requested site boundary, "building_only" when only a building can
+be identified, "location_indicator" when a circle or label identifies only a vicinity without a
+recoverable parcel boundary, or "unknown" when you cannot tell.
+
+If nothing on the page marks the plot at all, set marking_kind to "none", marking_is_spatial false,
+and leave the point zero."""
 
 
 class _XY(BaseModel):
@@ -157,17 +122,22 @@ class LocateAnswer(BaseModel):
     box_xy: _Box = Field(description="Axis-aligned box just containing the whole plot.")
     marking_kind: str = Field(
         description='"leader" for a label with a line or arrow, "hatching", "outline", '
-                    '"number", "other", or "none".')
+                    '"number", "circle", "text", "other", or "none".')
+    marking_is_spatial: bool = Field(
+        description="True only when marking_tip_xy is a point on the target drawing, not in text.")
     marking_tip_xy: _XY = Field(
-        description="Where the leader line ENDS on the drawing, or the middle of the marking if "
-                    "it is not a leader. Zeros if marking_kind is none.")
+        description="Where the leader ENDS on the target drawing, or the middle of a spatial "
+                    "marking. Zeros for unpointed text or no marking.")
+    target_geometry: str = Field(
+        description='One of "curtilage", "explicit_outline", "building_only", '
+                    '"location_indicator", or "unknown".')
     what_marked_it: str = Field(description="IN YOUR OWN WORDS: what told you it was this plot.")
     confidence: float = Field(description="0.0 to 1.0")
 
 
 def build_locate_agent() -> Agent:
     return Agent("test", output_type=NativeOutput(LocateAnswer), retries=1, output_retries=0,
-                 model_settings={"max_tokens": 3000, "timeout": 120},
+                 model_settings={"max_tokens": 4500, "timeout": 120},
                  instructions=L.load_prompt() + MARKING_EXTRA)
 
 
@@ -192,6 +162,8 @@ def locate_once(agent: Agent, model, gray: np.ndarray, case) -> dict:
     out.update({"is_plan": o.is_plan, "plan_kind": o.plan_kind, "found": o.found,
                 "said": o.what_marked_it, "confidence": o.confidence,
                 "marking_kind": o.marking_kind,
+                "marking_spatial": o.marking_is_spatial,
+                "target_geometry": o.target_geometry,
                 "point": [o.point_xy.x, o.point_xy.y],
                 "box": [o.box_xy.x0, o.box_xy.y0, o.box_xy.x1, o.box_xy.y1],
                 "tip": [o.marking_tip_xy.x, o.marking_tip_xy.y]})
@@ -252,6 +224,72 @@ def snap_iou(ring, gray: np.ndarray, bridge: int = 14, cover: float = 0.55) -> f
     return round(float((snap & target).sum() / (snap | target).sum()), 3)
 
 
+def locate_consensus(locates: list[dict], agree_at: float = 0.5):
+    """Require two agreeing whole-page locates; never trace from a lone unstable answer."""
+    valid = [(i, loc) for i, loc in enumerate(locates)
+             if loc.get("found") and loc.get("box") and not loc.get("error")]
+    if len(locates) == 1:
+        if not valid:
+            return None, None, {"best_iou": None, "members": []}
+        return dict(valid[0][1]), list(valid[0][1]["box"]), {
+            "best_iou": None, "members": [valid[0][0]]}
+    if len(valid) < 2:
+        return None, None, {"best_iou": 0.0, "members": []}
+
+    pairs = []
+    for (ia, a), (ib, b) in combinations(valid, 2):
+        pairs.append((B.box_iou(a["box"], b["box"]), ia, ib, a, b))
+    iou, ia, ib, a, b = max(pairs, key=lambda item: item[0])
+    if iou < agree_at:
+        return None, None, {"best_iou": iou, "members": []}
+    chosen = dict(max((a, b), key=lambda loc: float(loc.get("confidence") or 0.0)))
+    ba, bb = a["box"], b["box"]
+    box = [min(ba[0], bb[0]), min(ba[1], bb[1]), max(ba[2], bb[2]), max(ba[3], bb[3])]
+    chosen["box"] = box
+    return chosen, box, {"best_iou": iou, "members": [ia, ib]}
+
+
+def trace_guidance(loc: dict, box: list[int]) -> dict:
+    return {"point": loc.get("point"), "tip": loc.get("tip"), "box": box,
+            "marking_kind": loc.get("marking_kind"),
+            "marking_spatial": bool(loc.get("marking_spatial")),
+            "target_geometry": loc.get("target_geometry"),
+            "locate_said": loc.get("said")}
+
+
+def make_candidate(res, win, gray, dt, page_w: int, page_h: int, guidance: dict,
+                   source: str, fallback: bool = False) -> dict | None:
+    if not res.vertices_page:
+        return None
+    stats = B.ring_stats(res.vertices_page, dt)
+    edges = B.edge_contact(res.vertices_page, win, page_w, page_h)
+    point_ok = B.point_inside_ring(guidance.get("point"), res.vertices_page)
+    tip_ok = (B.point_inside_ring(guidance.get("tip"), res.vertices_page)
+              if guidance.get("marking_spatial") else None)
+    identity_ok = point_ok is True and (tip_ok is True if guidance.get("marking_spatial") else True)
+    return {"vertices_page": res.vertices_page, "said": res.said,
+            "confidence": res.confidence, "trace_seconds": res.seconds,
+            "window": [win.x, win.y, win.w, win.h], "scale": round(win.scale, 3),
+            "source": source, "fallback": fallback, "point_inside_ring": point_ok,
+            "tip_inside_ring": tip_ok, "identity_ok": identity_ok, "edges": edges,
+            "_win": win, **stats}
+
+
+def public_candidate(candidate: dict | None) -> dict | None:
+    return ({k: v for k, v in candidate.items() if k != "_win"} if candidate else None)
+
+
+def apply_candidate(row: dict, candidate: dict) -> None:
+    for key in ("vertices_page", "said", "confidence", "trace_seconds", "window", "scale",
+                "source", "point_inside_ring", "tip_inside_ring", "identity_ok", "edges",
+                "n_vertices", "ring_to_ink_median_px", "ring_to_ink_p90_px",
+                "frac_within_3px", "blank_share", "area_pct"):
+        row[key] = candidate.get(key)
+    row["traced"] = True
+    if candidate.get("fallback"):
+        row["source_note"] = "building outline -- no curtilage was drawn"
+
+
 def one_page(path: Path, agents, models, case, locate_twice: bool, do_regrow: bool,
              do_snap: bool) -> dict:
     a_loc, a_bnd = agents
@@ -262,39 +300,35 @@ def one_page(path: Path, agents, models, case, locate_twice: bool, do_regrow: bo
     ph, pw = gray.shape
     row: dict = {"version": VERSION, "stem": path.stem, "page_w": pw, "page_h": ph, "usd": 0.0}
 
-    # ---- 1. locate, twice
-    l1 = locate_once(a_loc, m_loc, gray, case)
-    row["locate_usd"] = l1.get("usd", 0.0)
-    row["usd"] += l1.get("usd", 0.0)
-    row.update({k: l1.get(k) for k in ("is_plan", "plan_kind", "found", "marking_kind",
-                                       "point", "box", "tip")})
-    row["locate_said"] = l1.get("said")
-    if l1.get("error"):
-        row["error"] = f"locate: {l1['error']}"
-        return row
-    if not (l1.get("found") and l1.get("box")):
-        row["skipped"] = "stage 1 found no plot"
-        return row
-    box = l1["box"]
+    # ---- 1. locate twice; a third call adjudicates any disagreement or lone answer
+    locates = [locate_once(a_loc, m_loc, gray, case)]
     if locate_twice:
-        l2 = locate_once(a_loc, m_loc, gray, case)
-        row["usd"] += l2.get("usd", 0.0)
-        row["locate_usd"] = round(row["locate_usd"] + l2.get("usd", 0.0), 6)
-        row["box_2"] = l2.get("box")
-        if l2.get("found") and l2.get("box"):
-            agree = B.box_iou(l1["box"], l2["box"])
-            if agree >= 0.5:
-                box = l1["box"]
-            else:
-                # the UNION, not the smaller box. When one call boxes the building and the other
-                # the plot, "smaller" takes the building -- 93-00352 declined for exactly that
-                # reason, and its union box produced the ring a human then judged correct.
-                a, b2 = l1["box"], l2["box"]
-                box = [min(a[0], b2[0]), min(a[1], b2[1]), max(a[2], b2[2]), max(a[3], b2[3])]
-            row["box_agree"] = agree
-        else:
-            row["box_agree"] = 0.0
+        locates.append(locate_once(a_loc, m_loc, gray, case))
+    loc, box, consensus = locate_consensus(locates)
+    if locate_twice and loc is None:
+        locates.append(locate_once(a_loc, m_loc, gray, case))
+        loc, box, consensus = locate_consensus(locates)
+    row["locate_usd"] = round(sum(l.get("usd", 0.0) for l in locates), 6)
+    row["usd"] = row["locate_usd"]
+    row["locate_calls"] = len(locates)
+    row["locate_adjudicated"] = len(locates) == 3
+    row["locate_candidates"] = [
+        {k: l.get(k) for k in ("found", "box", "point", "tip", "marking_kind",
+                                "marking_spatial", "target_geometry", "confidence", "said", "error")}
+        for l in locates]
+    row["box_agree"] = consensus.get("best_iou")
+    row["locate_consensus_members"] = consensus.get("members")
+    if loc is None or box is None:
+        row["found"] = False
+        row["skipped"] = "stage 1 had no two-call consensus"
+        row["needs_human"] = True
+        row["flags"] = ["whole-page locators did not reach a two-call consensus"]
+        return row
+    row.update({k: loc.get(k) for k in ("is_plan", "plan_kind", "found", "marking_kind",
+                                        "marking_spatial", "target_geometry", "point", "tip")})
+    row["box"] = loc.get("box")
     row["box_used"] = box
+    row["locate_said"] = loc.get("said")
 
     # ---- 2/3. window and zoom
     win = B.window_for(box, pw, ph)
@@ -302,9 +336,10 @@ def one_page(path: Path, agents, models, case, locate_twice: bool, do_regrow: bo
     row["scale"] = round(win.scale, 3)
     row["window_contains_box"] = B.window_contains_box(win, box)
     block = case.as_prompt_block() if case else ""
+    guidance = trace_guidance(loc, box)
 
     # ---- 4. trace
-    res = B.trace_one(a_bnd, m_bnd, gray, path.stem, win, block)
+    res = B.trace_one(a_bnd, m_bnd, gray, path.stem, win, block, guidance)
     row["usd"] = round(row["usd"] + res.usd, 6)
     row["trace_usd"] = res.usd
     row["trace_tokens"] = [res.tokens_in, res.tokens_out]
@@ -316,49 +351,80 @@ def one_page(path: Path, agents, models, case, locate_twice: bool, do_regrow: bo
     if not res.vertices_page:
         # the box has already been reconciled, so a decline here means the page really may have no
         # drawn curtilage. Offer the building outline instead, once.
+        if row.get("target_geometry") in {"building_only", "location_indicator"}:
+            row["declined_trace"] = True
+            row["needs_human"] = True
+            row["flags"] = [f"locator says {row['target_geometry']}; no recoverable parcel boundary"]
+            return row
         a_fb = B.build_agent(B.load_prompt() + BUILDING_FALLBACK)
-        res_fb = B.trace_one(a_fb, m_bnd, gray, path.stem, win, block)
+        res_fb = B.trace_one(a_fb, m_bnd, gray, path.stem, win, block, guidance)
         row["usd"] = round(row["usd"] + res_fb.usd, 6)
+        row["trace_usd"] = round(row["trace_usd"] + res_fb.usd, 6)
         row["fallback_tried"] = True
         row["fallback_said"] = res_fb.said
         if not res_fb.vertices_page:
             row["declined_trace"] = True
             return row
         res = res_fb
-        row["source_note"] = "building outline -- no curtilage was drawn"
-        row["said"] = res_fb.said
 
     dt = B.ink_distance(gray)
-    row["vertices_page"] = res.vertices_page
-    row.update(B.ring_stats(res.vertices_page, dt))
-    row["edges"] = B.edge_contact(res.vertices_page, win, pw, ph)
-    row["source"] = "first crop"
+    chosen = make_candidate(res, win, gray, dt, pw, ph, guidance, "first crop",
+                            fallback=bool(row.get("fallback_tried")))
+    if chosen is None:
+        row["declined_trace"] = True
+        return row
+
+    # Identity failure is not merely flagged: retry with the target constraint made explicit.
+    if chosen["identity_ok"] is not True and not chosen.get("fallback"):
+        retry_note = (
+            "IDENTITY RETRY: the previous ring missed the cyan target or magenta spatial marking. "
+            "Trace the intended plot that CONTAINS those locator marks; do not return a neighbour.")
+        res_id = B.trace_one(a_bnd, m_bnd, gray, path.stem, win, block, guidance, retry_note)
+        row["usd"] = round(row["usd"] + res_id.usd, 6)
+        row["trace_usd"] = round(row["trace_usd"] + res_id.usd, 6)
+        identity_candidate = make_candidate(
+            res_id, win, gray, dt, pw, ph, guidance, "identity retry")
+        row["identity_retry"] = public_candidate(identity_candidate)
+        if identity_candidate:
+            chosen, row["identity_retry_verdict"] = B.choose_candidate(chosen, identity_candidate)
 
     # ---- re-crop, only on sides the ring actually ran along
-    if do_regrow and row["edges"]["cut_sides"]:
-        win2 = B.grow_window(win, row["edges"]["cut_sides"], pw, ph)
-        res2 = B.trace_one(a_bnd, m_bnd, gray, path.stem, win2, block)
+    if do_regrow and chosen["edges"]["cut_sides"]:
+        win2 = B.grow_window(chosen["_win"], chosen["edges"]["cut_sides"], pw, ph)
+        res2 = B.trace_one(a_bnd, m_bnd, gray, path.stem, win2, block, guidance)
         row["usd"] = round(row["usd"] + res2.usd, 6)
-        after = B.ring_stats(res2.vertices_page, dt) if res2.vertices_page else None
-        keep, why = B.accept_regrow(row, after, res.vertices_page, res2.vertices_page, pw, ph)
-        row["regrow"] = {"window": [win2.x, win2.y, win2.w, win2.h],
-                         "scale": round(win2.scale, 3), "accepted": keep, "verdict": why,
-                         "said": res2.said, **(after or {})}
-        if keep:
-            row["vertices_page"] = res2.vertices_page
-            row.update(after)
-            row["edges"] = B.edge_contact(res2.vertices_page, win2, pw, ph)
-            row["source"] = "widened crop"
+        row["trace_usd"] = round(row["trace_usd"] + res2.usd, 6)
+        regrown = make_candidate(res2, win2, gray, dt, pw, ph, guidance, "widened crop")
+        if regrown:
+            selected, verdict = B.choose_candidate(chosen, regrown)
+            accepted = selected is regrown
+            chosen = selected
+        else:
+            accepted, verdict = False, "widened crop produced no polygon"
+        row["regrow"] = {**(public_candidate(regrown) or {}),
+                         "accepted": accepted, "verdict": verdict,
+                         "error": res2.error}
+
+    apply_candidate(row, chosen)
 
     # ---- 5. checks
     row["snap_iou"] = snap_iou(row["vertices_page"], gray) if do_snap else None
-    row["tip_inside_ring"] = tip_inside(row.get("tip"), row["vertices_page"])
     flags = B.review_flags(row, row["edges"], snap_iou=row["snap_iou"],
                            box_agree=row.get("box_agree"))
+    if row["point_inside_ring"] is False:
+        flags.insert(0, "the ring does not contain the locator's point inside the application plot")
     if row["tip_inside_ring"] is False:
         flags.insert(0, f"the ring does not contain the point the {row.get('marking_kind')} "
                         f"marking aims at -- it may be round the wrong plot")
+    if chosen.get("fallback"):
+        flags.insert(0, "building fallback produced a proxy outline, not a verified parcel boundary")
+    if row.get("target_geometry") in {"building_only", "location_indicator", "unknown"}:
+        flags.insert(0, f"locator geometry is {row['target_geometry']}, not a verified parcel")
+    if not row.get("marking_spatial") and row.get("marking_kind") in {"text", "other"}:
+        flags.insert(0, "site is identified only by non-spatial text; polygon identity needs review")
     row["flags"] = flags
+    row["needs_human"] = bool(flags)
+    row["auto_usable"] = bool(row["identity_ok"] and not flags and not chosen.get("fallback"))
     return row
 
 
@@ -441,7 +507,8 @@ def main() -> int:
             else:
                 tip = {True: "tip in", False: "TIP OUT", None: "no tip"}[row["tip_inside_ring"]]
                 state = (f"{row['n_vertices']:3d}v p90 {row['ring_to_ink_p90_px']:6.2f} "
-                         f"blank {row['blank_share']*100:3.0f}% {tip:7s}")
+                         f"blank {row['blank_share']*100:3.0f}% {tip:7s} "
+                         f"{'AUTO' if row.get('auto_usable') else 'REVIEW'}")
             print(f"[{i}/{len(todo)}] {row['stem'][:32]:32s} {state}  "
                   f"{('; '.join(row.get('flags') or []))[:52]}", flush=True)
 
@@ -449,6 +516,7 @@ def main() -> int:
     M = lambda k: (round(float(np.median([r[k] for r in ok if r.get(k) is not None])), 3)
                    if ok else None)
     tips = [r for r in ok if r.get("tip_inside_ring") is not None]
+    points = [r for r in ok if r.get("point_inside_ring") is not None]
     summary = {
         "version": VERSION, "locate_model": LOCATE_MODEL, "trace_model": args.trace_model,
         "pages": len(rows), "located": sum(1 for r in rows if r.get("found")), "traced": len(ok),
@@ -456,11 +524,17 @@ def main() -> int:
         "never_downscaled": all(r.get("scale", 1) >= 1.0 for r in rows),
         "locate_disagreed": sum(1 for r in rows
                                 if r.get("box_agree") is not None and r["box_agree"] < 0.5),
+        "locate_adjudicated": sum(1 for r in rows if r.get("locate_adjudicated")),
+        "locate_consensus_failed": sum(1 for r in rows
+                                        if r.get("skipped") == "stage 1 had no two-call consensus"),
         "fallback_tried": sum(1 for r in rows if r.get("fallback_tried")),
         "fallback_rescued": sum(1 for r in rows if r.get("fallback_tried")
                                 and r.get("vertices_page")),
         "regrow_fired": sum(1 for r in rows if r.get("regrow")),
         "regrow_accepted": sum(1 for r in rows if (r.get("regrow") or {}).get("accepted")),
+        "identity_retry_fired": sum(1 for r in rows if r.get("identity_retry") is not None),
+        "identity_retry_selected": sum(1 for r in rows
+                                        if r.get("source") == "identity retry"),
         "n_vertices": M("n_vertices"), "ring_to_ink_median_px": M("ring_to_ink_median_px"),
         "ring_to_ink_p90_px": M("ring_to_ink_p90_px"), "frac_within_3px": M("frac_within_3px"),
         "blank_share": M("blank_share"), "area_pct": M("area_pct"), "snap_iou": M("snap_iou"),
@@ -468,8 +542,12 @@ def main() -> int:
                           for k in sorted({r.get("marking_kind") for r in rows if r.get("marking_kind")})},
         "tip_checkable": len(tips),
         "tip_inside_ring": sum(1 for r in tips if r["tip_inside_ring"]),
+        "point_checkable": len(points),
+        "point_inside_ring": sum(1 for r in points if r["point_inside_ring"]),
         "pages_clean": sum(1 for r in ok if not r.get("flags")),
         "pages_flagged": sum(1 for r in ok if r.get("flags")),
+        "pages_auto_usable": sum(1 for r in rows if r.get("auto_usable")),
+        "pages_needs_human": sum(1 for r in rows if r.get("needs_human")),
         "usd_per_page": round(float(np.mean([r.get("usd", 0) for r in rows])), 5),
         "wall_seconds": round(time.time() - started, 1),
     }
