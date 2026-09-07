@@ -38,3 +38,7 @@ tmp_results/
 *.bak
 *.swp
 .DS_Store
+
+# Annotation-tool autosaves: serve_handlabel.py keeps the last 40 versions of each label
+# set on every write. Useful locally as a safety net, pure noise in history.
+find_plot_in_plan/labels/backups/

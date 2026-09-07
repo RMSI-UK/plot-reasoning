@@ -1,0 +1,4846 @@
+{
+ "what": "Hand-drawn plot boundaries. Ground truth for find_plot_in_plan.",
+ "how_to_read": "vertices_page are ordered [x,y] in ORIGINAL page pixels, same frame as the pipeline's vertices_page, so IoU against a traced ring is direct. status: drawn | no_boundary (nothing enclosing is drawn on the page) | unusable (not a usable plan) | skip. saw_ai_ring records whether the pipeline overlay was revealed before finishing.",
+ "drawn_by": "project owner",
+ "date": "2026-09-04",
+ "n": 62,
+ "labels": [
+  {
+   "stem": "88-02319-P_001-001_0001_p1",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     328,
+     160
+    ],
+    [
+     420,
+     244
+    ],
+    [
+     391,
+     274
+    ],
+    [
+     308,
+     184
+    ],
+    [
+     320,
+     167
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 674,
+   "page_h": 890
+  },
+  {
+   "stem": "89-00331-P_001-001_0012_p1",
+   "status": "no_boundary",
+   "vertices_page": [],
+   "closed": false,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 911,
+   "page_h": 1120
+  },
+  {
+   "stem": "89-00911-P_001-001_0001_p5",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     504,
+     663
+    ],
+    [
+     542,
+     685
+    ],
+    [
+     585,
+     699
+    ],
+    [
+     520,
+     815
+    ],
+    [
+     439,
+     779
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 905,
+   "page_h": 948
+  },
+  {
+   "stem": "90-01100_001-002_0001_p2",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     1260,
+     420
+    ],
+    [
+     1250,
+     431
+    ],
+    [
+     1267,
+     444
+    ],
+    [
+     1257,
+     459
+    ],
+    [
+     1249,
+     453
+    ],
+    [
+     1256,
+     443
+    ],
+    [
+     1246,
+     437
+    ],
+    [
+     1229,
+     462
+    ],
+    [
+     1235,
+     464
+    ],
+    [
+     1260,
+     480
+    ],
+    [
+     1288,
+     440
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1600,
+   "page_h": 762
+  },
+  {
+   "stem": "90-01509-P_001-001_0001_p2",
+   "status": "no_boundary",
+   "vertices_page": [],
+   "closed": false,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 660,
+   "page_h": 455
+  },
+  {
+   "stem": "90-01624-P_001-002_0001_p1",
+   "status": "no_boundary",
+   "vertices_page": [],
+   "closed": false,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1600,
+   "page_h": 1232
+  },
+  {
+   "stem": "91-00206-P_001-001_0001_p1",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     498,
+     435
+    ],
+    [
+     617,
+     482
+    ],
+    [
+     640,
+     485
+    ],
+    [
+     758,
+     539
+    ],
+    [
+     753,
+     558
+    ],
+    [
+     687,
+     558
+    ],
+    [
+     506,
+     526
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1465,
+   "page_h": 1069
+  },
+  {
+   "stem": "91-01352-P-FWS_001-001_0001_p1",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     580,
+     153
+    ],
+    [
+     602,
+     166
+    ],
+    [
+     610,
+     150
+    ],
+    [
+     1506,
+     760
+    ],
+    [
+     1335,
+     1052
+    ],
+    [
+     1307,
+     1059
+    ],
+    [
+     1247,
+     985
+    ],
+    [
+     1065,
+     863
+    ],
+    [
+     824,
+     724
+    ],
+    [
+     714,
+     952
+    ],
+    [
+     333,
+     731
+    ],
+    [
+     240,
+     612
+    ],
+    [
+     437,
+     390
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1600,
+   "page_h": 1206
+  },
+  {
+   "stem": "93-01241-P_001-001_0001_p1",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     639,
+     410
+    ],
+    [
+     617,
+     475
+    ],
+    [
+     645,
+     487
+    ],
+    [
+     663,
+     448
+    ],
+    [
+     670,
+     448
+    ],
+    [
+     678,
+     424
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1108,
+   "page_h": 874
+  },
+  {
+   "stem": "89-00023-A_001-001_0017_p1",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     282,
+     207
+    ],
+    [
+     508,
+     209
+    ],
+    [
+     506,
+     293
+    ],
+    [
+     306,
+     256
+    ],
+    [
+     306,
+     236
+    ],
+    [
+     305,
+     246
+    ],
+    [
+     286,
+     242
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1034,
+   "page_h": 739
+  },
+  {
+   "stem": "89-00308-P_001-001_0001_p3",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     742,
+     747
+    ],
+    [
+     698,
+     836
+    ],
+    [
+     733,
+     853
+    ],
+    [
+     736,
+     1277
+    ],
+    [
+     784,
+     1324
+    ],
+    [
+     895,
+     1324
+    ],
+    [
+     914,
+     1396
+    ],
+    [
+     940,
+     1405
+    ],
+    [
+     1022,
+     1401
+    ],
+    [
+     1028,
+     754
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1600,
+   "page_h": 1553
+  },
+  {
+   "stem": "89-00920-P_001-001_0001_p9",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     1259,
+     669
+    ],
+    [
+     1325,
+     649
+    ],
+    [
+     1351,
+     685
+    ],
+    [
+     1278,
+     721
+    ],
+    [
+     1265,
+     683
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1600,
+   "page_h": 1110
+  },
+  {
+   "stem": "89-01308-P_001-001_0001_p4",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     400,
+     357
+    ],
+    [
+     406,
+     377
+    ],
+    [
+     424,
+     372
+    ],
+    [
+     420,
+     355
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1095,
+   "page_h": 887
+  },
+  {
+   "stem": "89-01367_001-001_0001_p6",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     292,
+     408
+    ],
+    [
+     297,
+     500
+    ],
+    [
+     331,
+     501
+    ],
+    [
+     330,
+     457
+    ],
+    [
+     328,
+     435
+    ],
+    [
+     336,
+     427
+    ],
+    [
+     354,
+     420
+    ],
+    [
+     349,
+     408
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1048,
+   "page_h": 845
+  },
+  {
+   "stem": "89-01783-P_001-001_0002_p6",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     253,
+     323
+    ],
+    [
+     1252,
+     30
+    ],
+    [
+     1248,
+     604
+    ],
+    [
+     1230,
+     1458
+    ],
+    [
+     269,
+     1465
+    ],
+    [
+     259,
+     997
+    ],
+    [
+     255,
+     675
+    ]
+   ],
+   "closed": true,
+   "note": "Originally labelled no_boundary. On review the page DOES carry a drawn boundary and v2 found it: accurate.",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1422,
+   "page_h": 1600,
+   "ring_source": "snap_boundary_v2, confirmed by eye",
+   "extent_approximate": false
+  },
+  {
+   "stem": "90-00361-P_001-002_0001_p1",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     197,
+     255
+    ],
+    [
+     214,
+     253
+    ],
+    [
+     231,
+     249
+    ],
+    [
+     249,
+     245
+    ],
+    [
+     275,
+     243
+    ],
+    [
+     307,
+     241
+    ],
+    [
+     340,
+     240
+    ],
+    [
+     375,
+     241
+    ],
+    [
+     413,
+     240
+    ],
+    [
+     450,
+     240
+    ],
+    [
+     484,
+     240
+    ],
+    [
+     519,
+     237
+    ],
+    [
+     545,
+     237
+    ],
+    [
+     553,
+     241
+    ],
+    [
+     548,
+     255
+    ],
+    [
+     541,
+     273
+    ],
+    [
+     536,
+     288
+    ],
+    [
+     536,
+     319
+    ],
+    [
+     538,
+     350
+    ],
+    [
+     544,
+     384
+    ],
+    [
+     554,
+     431
+    ],
+    [
+     532,
+     425
+    ],
+    [
+     507,
+     419
+    ],
+    [
+     480,
+     414
+    ],
+    [
+     451,
+     408
+    ],
+    [
+     422,
+     404
+    ],
+    [
+     391,
+     401
+    ],
+    [
+     358,
+     398
+    ],
+    [
+     323,
+     397
+    ],
+    [
+     290,
+     398
+    ],
+    [
+     257,
+     400
+    ],
+    [
+     227,
+     401
+    ],
+    [
+     197,
+     404
+    ],
+    [
+     196,
+     380
+    ],
+    [
+     196,
+     351
+    ],
+    [
+     197,
+     321
+    ],
+    [
+     197,
+     290
+    ],
+    [
+     197,
+     255
+    ]
+   ],
+   "closed": true,
+   "note": "Originally labelled no_boundary. On review the page DOES carry a drawn boundary and v2 found it: accurate.",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 772,
+   "page_h": 696,
+   "ring_source": "snap_boundary_v2, confirmed by eye",
+   "extent_approximate": false
+  },
+  {
+   "stem": "90-00953_001-001_0002_p1",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     529,
+     224
+    ],
+    [
+     528,
+     386
+    ],
+    [
+     518,
+     499
+    ],
+    [
+     706,
+     500
+    ],
+    [
+     706,
+     635
+    ],
+    [
+     796,
+     637
+    ],
+    [
+     795,
+     506
+    ],
+    [
+     987,
+     504
+    ],
+    [
+     979,
+     388
+    ],
+    [
+     707,
+     380
+    ],
+    [
+     705,
+     294
+    ],
+    [
+     686,
+     278
+    ],
+    [
+     659,
+     277
+    ],
+    [
+     645,
+     298
+    ],
+    [
+     641,
+     385
+    ],
+    [
+     627,
+     381
+    ],
+    [
+     629,
+     223
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1278,
+   "page_h": 1600
+  },
+  {
+   "stem": "90-01100_001-002_0001_p1",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     560,
+     576
+    ],
+    [
+     513,
+     651
+    ],
+    [
+     613,
+     716
+    ],
+    [
+     698,
+     585
+    ],
+    [
+     604,
+     522
+    ],
+    [
+     576,
+     558
+    ],
+    [
+     633,
+     599
+    ],
+    [
+     598,
+     643
+    ],
+    [
+     575,
+     626
+    ],
+    [
+     589,
+     599
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1600,
+   "page_h": 1168
+  },
+  {
+   "stem": "91-00362-P_001-001_0001_p3",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     701,
+     668
+    ],
+    [
+     737,
+     656
+    ],
+    [
+     886,
+     585
+    ],
+    [
+     901,
+     596
+    ],
+    [
+     938,
+     683
+    ],
+    [
+     896,
+     708
+    ],
+    [
+     887,
+     695
+    ],
+    [
+     811,
+     735
+    ],
+    [
+     819,
+     752
+    ],
+    [
+     779,
+     771
+    ],
+    [
+     767,
+     748
+    ],
+    [
+     752,
+     703
+    ],
+    [
+     713,
+     708
+    ]
+   ],
+   "closed": true,
+   "note": "Originally labelled no_boundary. On review the page DOES carry a drawn boundary and v2 found it: right plot, extent slightly off. The ring is right about which plot but not pixel-accurate, so use it for identity scoring, not for extent.",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1438,
+   "page_h": 1131,
+   "ring_source": "snap_boundary_v2, confirmed by eye",
+   "extent_approximate": true
+  },
+  {
+   "stem": "91-00630-P_001-001_0001_p4",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     464,
+     636
+    ],
+    [
+     454,
+     648
+    ],
+    [
+     529,
+     700
+    ],
+    [
+     516,
+     670
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1600,
+   "page_h": 1412
+  },
+  {
+   "stem": "91-00980-P_001-001_0002_p5",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     287,
+     342
+    ],
+    [
+     296,
+     713
+    ],
+    [
+     572,
+     717
+    ],
+    [
+     574,
+     519
+    ],
+    [
+     506,
+     521
+    ],
+    [
+     509,
+     344
+    ],
+    [
+     478,
+     346
+    ],
+    [
+     478,
+     322
+    ],
+    [
+     410,
+     322
+    ],
+    [
+     410,
+     344
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1283,
+   "page_h": 1579
+  },
+  {
+   "stem": "91-00984-P_001-001_0001_p2",
+   "status": "no_boundary",
+   "vertices_page": [],
+   "closed": false,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 719,
+   "page_h": 1011
+  },
+  {
+   "stem": "91-01107-P_001-001_0001_p1",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     709,
+     376
+    ],
+    [
+     706,
+     613
+    ],
+    [
+     758,
+     612
+    ],
+    [
+     763,
+     388
+    ],
+    [
+     719,
+     388
+    ],
+    [
+     719,
+     379
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1600,
+   "page_h": 907
+  },
+  {
+   "stem": "91-01254_001-001_0001_p3",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     1359,
+     741
+    ],
+    [
+     1359,
+     1272
+    ],
+    [
+     1178,
+     1308
+    ],
+    [
+     864,
+     1310
+    ],
+    [
+     386,
+     1293
+    ],
+    [
+     179,
+     1275
+    ],
+    [
+     137,
+     1257
+    ],
+    [
+     106,
+     1213
+    ],
+    [
+     114,
+     1142
+    ],
+    [
+     277,
+     792
+    ],
+    [
+     494,
+     348
+    ],
+    [
+     521,
+     317
+    ],
+    [
+     588,
+     275
+    ],
+    [
+     854,
+     272
+    ],
+    [
+     1301,
+     259
+    ],
+    [
+     1298,
+     742
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1600,
+   "page_h": 1414
+  },
+  {
+   "stem": "91-01330-P-FHS_001-001_0002_p2",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     139,
+     322
+    ],
+    [
+     139,
+     297
+    ],
+    [
+     120,
+     297
+    ],
+    [
+     120,
+     249
+    ],
+    [
+     120,
+     219
+    ],
+    [
+     135,
+     219
+    ],
+    [
+     135,
+     157
+    ],
+    [
+     154,
+     157
+    ],
+    [
+     179,
+     160
+    ],
+    [
+     179,
+     231
+    ],
+    [
+     184,
+     231
+    ],
+    [
+     184,
+     281
+    ],
+    [
+     184,
+     298
+    ],
+    [
+     184,
+     322
+    ]
+   ],
+   "closed": true,
+   "note": "Originally labelled no_boundary. On review the page DOES carry a drawn boundary and v2 found it: right plot, extent slightly off. The ring is right about which plot but not pixel-accurate, so use it for identity scoring, not for extent.",
+   "saw_ai_ring": false,
+   "sample": "hand-picked",
+   "page_w": 709,
+   "page_h": 542,
+   "ring_source": "snap_boundary_v2, confirmed by eye",
+   "extent_approximate": true
+  },
+  {
+   "stem": "92-00345-P_001-001_0001_p2",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     753,
+     513
+    ],
+    [
+     647,
+     732
+    ],
+    [
+     690,
+     750
+    ],
+    [
+     798,
+     534
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1325,
+   "page_h": 1071
+  },
+  {
+   "stem": "92-00426-P-FBN_001-001_0001_p4",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     462,
+     276
+    ],
+    [
+     464,
+     314
+    ],
+    [
+     501,
+     309
+    ],
+    [
+     497,
+     274
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1025,
+   "page_h": 821
+  },
+  {
+   "stem": "92-01283-P_001-001_0001_p1",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     760,
+     236
+    ],
+    [
+     764,
+     313
+    ],
+    [
+     858,
+     312
+    ],
+    [
+     864,
+     393
+    ],
+    [
+     1005,
+     399
+    ],
+    [
+     1005,
+     369
+    ],
+    [
+     1018,
+     347
+    ],
+    [
+     1053,
+     329
+    ],
+    [
+     1043,
+     251
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1600,
+   "page_h": 756
+  },
+  {
+   "stem": "93-00352-P_001-001_0001_p1",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     672,
+     269
+    ],
+    [
+     691,
+     302
+    ],
+    [
+     683,
+     363
+    ],
+    [
+     664,
+     369
+    ],
+    [
+     656,
+     378
+    ],
+    [
+     660,
+     401
+    ],
+    [
+     677,
+     415
+    ],
+    [
+     693,
+     411
+    ],
+    [
+     704,
+     401
+    ],
+    [
+     704,
+     380
+    ],
+    [
+     706,
+     372
+    ],
+    [
+     769,
+     343
+    ],
+    [
+     711,
+     247
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 995,
+   "page_h": 1027
+  },
+  {
+   "stem": "93-00362-P_001-001_0001_p1",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     287,
+     166
+    ],
+    [
+     354,
+     246
+    ],
+    [
+     542,
+     136
+    ],
+    [
+     523,
+     106
+    ],
+    [
+     447,
+     120
+    ],
+    [
+     430,
+     115
+    ],
+    [
+     407,
+     129
+    ],
+    [
+     400,
+     118
+    ],
+    [
+     368,
+     125
+    ],
+    [
+     377,
+     140
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 754,
+   "page_h": 759
+  },
+  {
+   "stem": "93-00570-LB-93-767-P_001-002_0001_p2",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     1076,
+     688
+    ],
+    [
+     1060,
+     762
+    ],
+    [
+     1130,
+     779
+    ],
+    [
+     1125,
+     807
+    ],
+    [
+     1142,
+     899
+    ],
+    [
+     1202,
+     704
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "hand-picked",
+   "page_w": 1600,
+   "page_h": 988
+  },
+  {
+   "stem": "93-01260-P_001-001_0001_p6",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     295,
+     794
+    ],
+    [
+     305,
+     1026
+    ],
+    [
+     522,
+     1017
+    ],
+    [
+     515,
+     790
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1248,
+   "page_h": 1600
+  },
+  {
+   "stem": "93-01316-P_001-001_0001_p1",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     827,
+     600
+    ],
+    [
+     858,
+     692
+    ],
+    [
+     1023,
+     643
+    ],
+    [
+     1003,
+     579
+    ],
+    [
+     1032,
+     569
+    ],
+    [
+     1018,
+     529
+    ],
+    [
+     963,
+     554
+    ],
+    [
+     954,
+     541
+    ],
+    [
+     927,
+     546
+    ],
+    [
+     938,
+     563
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1554,
+   "page_h": 1223
+  },
+  {
+   "stem": "88-02270_001-001_0001_p6",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     143,
+     345
+    ],
+    [
+     197,
+     343
+    ],
+    [
+     193,
+     469
+    ],
+    [
+     137,
+     466
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 878,
+   "page_h": 1002
+  },
+  {
+   "stem": "88-02318-P_001-001_0001_p1",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     337,
+     171
+    ],
+    [
+     434,
+     253
+    ],
+    [
+     403,
+     285
+    ],
+    [
+     349,
+     225
+    ],
+    [
+     318,
+     194
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 705,
+   "page_h": 909
+  },
+  {
+   "stem": "89-00455-P_001-001_0001_p11",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     469,
+     175
+    ],
+    [
+     467,
+     277
+    ],
+    [
+     500,
+     278
+    ],
+    [
+     499,
+     225
+    ],
+    [
+     624,
+     223
+    ],
+    [
+     620,
+     178
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 671,
+   "page_h": 770
+  },
+  {
+   "stem": "89-00624-P_001-001_0001_p2",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     384,
+     426
+    ],
+    [
+     413,
+     428
+    ],
+    [
+     415,
+     635
+    ],
+    [
+     385,
+     632
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "hand-picked",
+   "page_w": 736,
+   "page_h": 1011
+  },
+  {
+   "stem": "89-00931-P_001-001_0001_p7",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     260,
+     354
+    ],
+    [
+     262,
+     438
+    ],
+    [
+     337,
+     443
+    ],
+    [
+     334,
+     353
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 654,
+   "page_h": 715
+  },
+  {
+   "stem": "89-01322-P_001-001_0002_p2",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     381,
+     558
+    ],
+    [
+     335,
+     705
+    ],
+    [
+     479,
+     797
+    ],
+    [
+     499,
+     769
+    ],
+    [
+     507,
+     705
+    ],
+    [
+     413,
+     598
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1137,
+   "page_h": 1295
+  },
+  {
+   "stem": "89-01810-P_001-001_0003_p2",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     427,
+     499
+    ],
+    [
+     471,
+     567
+    ],
+    [
+     519,
+     545
+    ],
+    [
+     480,
+     474
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1101,
+   "page_h": 864
+  },
+  {
+   "stem": "89-01896_001-001_0001_p4",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     277,
+     668
+    ],
+    [
+     271,
+     696
+    ],
+    [
+     347,
+     719
+    ],
+    [
+     396,
+     759
+    ],
+    [
+     449,
+     751
+    ],
+    [
+     503,
+     751
+    ],
+    [
+     505,
+     744
+    ],
+    [
+     504,
+     708
+    ],
+    [
+     482,
+     664
+    ],
+    [
+     443,
+     675
+    ],
+    [
+     385,
+     678
+    ],
+    [
+     381,
+     648
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1482,
+   "page_h": 1492
+  },
+  {
+   "stem": "89-01912-P-89-01913-LB_001-001_0001_p1",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     335,
+     390
+    ],
+    [
+     336,
+     508
+    ],
+    [
+     336,
+     635
+    ],
+    [
+     446,
+     636
+    ],
+    [
+     444,
+     784
+    ],
+    [
+     543,
+     787
+    ],
+    [
+     545,
+     608
+    ],
+    [
+     606,
+     611
+    ],
+    [
+     611,
+     622
+    ],
+    [
+     884,
+     625
+    ],
+    [
+     885,
+     736
+    ],
+    [
+     907,
+     736
+    ],
+    [
+     909,
+     780
+    ],
+    [
+     995,
+     777
+    ],
+    [
+     996,
+     628
+    ],
+    [
+     1051,
+     631
+    ],
+    [
+     1053,
+     544
+    ],
+    [
+     1001,
+     545
+    ],
+    [
+     1000,
+     511
+    ],
+    [
+     793,
+     512
+    ],
+    [
+     791,
+     473
+    ],
+    [
+     714,
+     473
+    ],
+    [
+     713,
+     461
+    ],
+    [
+     583,
+     463
+    ],
+    [
+     588,
+     389
+    ],
+    [
+     549,
+     387
+    ],
+    [
+     548,
+     376
+    ],
+    [
+     462,
+     375
+    ],
+    [
+     457,
+     399
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1434,
+   "page_h": 911
+  },
+  {
+   "stem": "90-00026-P_001-001_0002_p9",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     371,
+     231
+    ],
+    [
+     371,
+     629
+    ],
+    [
+     379,
+     670
+    ],
+    [
+     391,
+     699
+    ],
+    [
+     428,
+     719
+    ],
+    [
+     496,
+     705
+    ],
+    [
+     557,
+     639
+    ],
+    [
+     586,
+     581
+    ],
+    [
+     588,
+     523
+    ],
+    [
+     573,
+     446
+    ],
+    [
+     569,
+     280
+    ],
+    [
+     497,
+     279
+    ],
+    [
+     496,
+     232
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1297,
+   "page_h": 890
+  },
+  {
+   "stem": "90-00302-LB_001-001_0001_p5",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     547,
+     154
+    ],
+    [
+     619,
+     152
+    ],
+    [
+     621,
+     252
+    ],
+    [
+     548,
+     255
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1306,
+   "page_h": 553
+  },
+  {
+   "stem": "90-00366-P_001-001_0001_p5",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     81,
+     166
+    ],
+    [
+     92,
+     985
+    ],
+    [
+     713,
+     969
+    ],
+    [
+     752,
+     935
+    ],
+    [
+     739,
+     879
+    ],
+    [
+     808,
+     881
+    ],
+    [
+     811,
+     564
+    ],
+    [
+     1067,
+     561
+    ],
+    [
+     1062,
+     147
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1600,
+   "page_h": 1381
+  },
+  {
+   "stem": "90-00451-P_001-001_0001_p1",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     866,
+     34
+    ],
+    [
+     859,
+     319
+    ],
+    [
+     979,
+     328
+    ],
+    [
+     1015,
+     41
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1117,
+   "page_h": 831
+  },
+  {
+   "stem": "90-00789-P_001-001_0001_p2",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     348,
+     191
+    ],
+    [
+     354,
+     293
+    ],
+    [
+     475,
+     272
+    ],
+    [
+     473,
+     189
+    ],
+    [
+     354,
+     193
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 952,
+   "page_h": 907
+  },
+  {
+   "stem": "90-01309_001-001_0001_p1",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     509,
+     654
+    ],
+    [
+     428,
+     781
+    ],
+    [
+     404,
+     816
+    ],
+    [
+     409,
+     847
+    ],
+    [
+     445,
+     893
+    ],
+    [
+     518,
+     816
+    ],
+    [
+     582,
+     690
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 958,
+   "page_h": 1037
+  },
+  {
+   "stem": "90-01509-P_001-001_0001_p6",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     159,
+     214
+    ],
+    [
+     155,
+     442
+    ],
+    [
+     192,
+     460
+    ],
+    [
+     236,
+     468
+    ],
+    [
+     276,
+     455
+    ],
+    [
+     376,
+     451
+    ],
+    [
+     386,
+     23
+    ],
+    [
+     213,
+     21
+    ],
+    [
+     210,
+     212
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 710,
+   "page_h": 532
+  },
+  {
+   "stem": "90-01780-P_001-001_0001_p1",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     224,
+     637
+    ],
+    [
+     245,
+     670
+    ],
+    [
+     269,
+     773
+    ],
+    [
+     269,
+     809
+    ],
+    [
+     396,
+     973
+    ],
+    [
+     462,
+     1071
+    ],
+    [
+     555,
+     1179
+    ],
+    [
+     611,
+     1272
+    ],
+    [
+     720,
+     1349
+    ],
+    [
+     757,
+     1359
+    ],
+    [
+     886,
+     1144
+    ],
+    [
+     770,
+     1144
+    ],
+    [
+     854,
+     942
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1398,
+   "page_h": 1479
+  },
+  {
+   "stem": "91-00185-P_001-001_0001_p6",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     505,
+     901
+    ],
+    [
+     513,
+     1076
+    ],
+    [
+     513,
+     1138
+    ],
+    [
+     553,
+     1210
+    ],
+    [
+     615,
+     1266
+    ],
+    [
+     708,
+     1294
+    ],
+    [
+     665,
+     1238
+    ],
+    [
+     663,
+     908
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1402,
+   "page_h": 1600
+  },
+  {
+   "stem": "91-00195-P_001-001_0002_p1",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     228,
+     422
+    ],
+    [
+     199,
+     530
+    ],
+    [
+     246,
+     656
+    ],
+    [
+     330,
+     626
+    ],
+    [
+     275,
+     442
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 822,
+   "page_h": 880
+  },
+  {
+   "stem": "91-00507-P-F_001-002_0001_p3",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     785,
+     135
+    ],
+    [
+     1230,
+     663
+    ],
+    [
+     1044,
+     808
+    ],
+    [
+     619,
+     269
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1600,
+   "page_h": 1146
+  },
+  {
+   "stem": "91-01384-P_001-001_0001_p1",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     328,
+     202
+    ],
+    [
+     327,
+     696
+    ],
+    [
+     499,
+     700
+    ],
+    [
+     498,
+     201
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 849,
+   "page_h": 874
+  },
+  {
+   "stem": "91-01395-P_001-001_0001_p4",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     428,
+     795
+    ],
+    [
+     415,
+     828
+    ],
+    [
+     570,
+     847
+    ],
+    [
+     569,
+     834
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1068,
+   "page_h": 1212
+  },
+  {
+   "stem": "92-00392_001-001_0001_rec1",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     186,
+     952
+    ],
+    [
+     301,
+     892
+    ],
+    [
+     317,
+     945
+    ],
+    [
+     201,
+     1007
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "hand-picked",
+   "page_w": 684,
+   "page_h": 1600
+  },
+  {
+   "stem": "92-00486_001-001_0003_p1",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     388,
+     204
+    ],
+    [
+     432,
+     339
+    ],
+    [
+     569,
+     396
+    ],
+    [
+     811,
+     495
+    ],
+    [
+     850,
+     514
+    ],
+    [
+     917,
+     328
+    ],
+    [
+     671,
+     244
+    ],
+    [
+     480,
+     188
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1286,
+   "page_h": 870
+  },
+  {
+   "stem": "92-00516_001-001_0001_p1",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     695,
+     288
+    ],
+    [
+     691,
+     377
+    ],
+    [
+     799,
+     344
+    ],
+    [
+     799,
+     274
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1468,
+   "page_h": 1129
+  },
+  {
+   "stem": "92-00855_001-001_0001_p2",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     739,
+     160
+    ],
+    [
+     715,
+     1038
+    ],
+    [
+     1127,
+     1021
+    ],
+    [
+     1122,
+     162
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1600,
+   "page_h": 1214
+  },
+  {
+   "stem": "92-00976_001-002_0003_p3",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     506,
+     676
+    ],
+    [
+     555,
+     672
+    ],
+    [
+     567,
+     813
+    ],
+    [
+     517,
+     813
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1164,
+   "page_h": 1398
+  },
+  {
+   "stem": "93-00579-P_001-001_0001_p10",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     636,
+     496
+    ],
+    [
+     502,
+     581
+    ],
+    [
+     538,
+     643
+    ],
+    [
+     337,
+     741
+    ],
+    [
+     481,
+     856
+    ],
+    [
+     704,
+     983
+    ],
+    [
+     802,
+     1020
+    ],
+    [
+     901,
+     1025
+    ],
+    [
+     1000,
+     941
+    ],
+    [
+     936,
+     856
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1600,
+   "page_h": 1395
+  },
+  {
+   "stem": "93-01583-P_001-001_0001_p1",
+   "status": "drawn",
+   "vertices_page": [
+    [
+     915,
+     615
+    ],
+    [
+     850,
+     665
+    ],
+    [
+     862,
+     679
+    ],
+    [
+     890,
+     664
+    ],
+    [
+     933,
+     632
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "saw_ai_ring": false,
+   "sample": "sampled",
+   "page_w": 1464,
+   "page_h": 985
+  }
+ ],
+ "state": {
+  "88-02319-P_001-001_0001_p1": {
+   "status": "drawn",
+   "ring": [
+    [
+     328,
+     160
+    ],
+    [
+     420,
+     244
+    ],
+    [
+     391,
+     274
+    ],
+    [
+     308,
+     184
+    ],
+    [
+     320,
+     167
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525474387
+  },
+  "89-00331-P_001-001_0012_p1": {
+   "status": "no_boundary",
+   "ring": [],
+   "closed": false,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525485817
+  },
+  "89-00911-P_001-001_0001_p5": {
+   "status": "drawn",
+   "ring": [
+    [
+     504,
+     663
+    ],
+    [
+     542,
+     685
+    ],
+    [
+     585,
+     699
+    ],
+    [
+     520,
+     815
+    ],
+    [
+     439,
+     779
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525496068
+  },
+  "90-01100_001-002_0001_p2": {
+   "status": "drawn",
+   "ring": [
+    [
+     1260,
+     420
+    ],
+    [
+     1250,
+     431
+    ],
+    [
+     1267,
+     444
+    ],
+    [
+     1257,
+     459
+    ],
+    [
+     1249,
+     453
+    ],
+    [
+     1256,
+     443
+    ],
+    [
+     1246,
+     437
+    ],
+    [
+     1229,
+     462
+    ],
+    [
+     1235,
+     464
+    ],
+    [
+     1260,
+     480
+    ],
+    [
+     1288,
+     440
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525521555
+  },
+  "90-01509-P_001-001_0001_p2": {
+   "status": "no_boundary",
+   "ring": [],
+   "closed": false,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525525202
+  },
+  "90-01624-P_001-002_0001_p1": {
+   "status": "no_boundary",
+   "ring": [],
+   "closed": false,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525539777
+  },
+  "91-00206-P_001-001_0001_p1": {
+   "status": "drawn",
+   "ring": [
+    [
+     498,
+     435
+    ],
+    [
+     617,
+     482
+    ],
+    [
+     640,
+     485
+    ],
+    [
+     758,
+     539
+    ],
+    [
+     753,
+     558
+    ],
+    [
+     687,
+     558
+    ],
+    [
+     506,
+     526
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525554839
+  },
+  "91-01352-P-FWS_001-001_0001_p1": {
+   "status": "drawn",
+   "ring": [
+    [
+     580,
+     153
+    ],
+    [
+     602,
+     166
+    ],
+    [
+     610,
+     150
+    ],
+    [
+     1506,
+     760
+    ],
+    [
+     1335,
+     1052
+    ],
+    [
+     1307,
+     1059
+    ],
+    [
+     1247,
+     985
+    ],
+    [
+     1065,
+     863
+    ],
+    [
+     824,
+     724
+    ],
+    [
+     714,
+     952
+    ],
+    [
+     333,
+     731
+    ],
+    [
+     240,
+     612
+    ],
+    [
+     437,
+     390
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525608742
+  },
+  "93-01241-P_001-001_0001_p1": {
+   "status": "drawn",
+   "ring": [
+    [
+     639,
+     410
+    ],
+    [
+     617,
+     475
+    ],
+    [
+     645,
+     487
+    ],
+    [
+     663,
+     448
+    ],
+    [
+     670,
+     448
+    ],
+    [
+     678,
+     424
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525620702
+  },
+  "89-00023-A_001-001_0017_p1": {
+   "status": "drawn",
+   "ring": [
+    [
+     282,
+     207
+    ],
+    [
+     508,
+     209
+    ],
+    [
+     506,
+     293
+    ],
+    [
+     306,
+     256
+    ],
+    [
+     306,
+     236
+    ],
+    [
+     305,
+     246
+    ],
+    [
+     286,
+     242
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525633026
+  },
+  "89-00308-P_001-001_0001_p3": {
+   "status": "drawn",
+   "ring": [
+    [
+     742,
+     747
+    ],
+    [
+     698,
+     836
+    ],
+    [
+     733,
+     853
+    ],
+    [
+     736,
+     1277
+    ],
+    [
+     784,
+     1324
+    ],
+    [
+     895,
+     1324
+    ],
+    [
+     914,
+     1396
+    ],
+    [
+     940,
+     1405
+    ],
+    [
+     1022,
+     1401
+    ],
+    [
+     1028,
+     754
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525649288
+  },
+  "89-00920-P_001-001_0001_p9": {
+   "status": "drawn",
+   "ring": [
+    [
+     1259,
+     669
+    ],
+    [
+     1325,
+     649
+    ],
+    [
+     1351,
+     685
+    ],
+    [
+     1278,
+     721
+    ],
+    [
+     1265,
+     683
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525658770
+  },
+  "89-01308-P_001-001_0001_p4": {
+   "status": "drawn",
+   "ring": [
+    [
+     400,
+     357
+    ],
+    [
+     406,
+     377
+    ],
+    [
+     424,
+     372
+    ],
+    [
+     420,
+     355
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525670395
+  },
+  "89-01367_001-001_0001_p6": {
+   "status": "drawn",
+   "ring": [
+    [
+     292,
+     408
+    ],
+    [
+     297,
+     500
+    ],
+    [
+     331,
+     501
+    ],
+    [
+     330,
+     457
+    ],
+    [
+     328,
+     435
+    ],
+    [
+     336,
+     427
+    ],
+    [
+     354,
+     420
+    ],
+    [
+     349,
+     408
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525680056
+  },
+  "89-01783-P_001-001_0002_p6": {
+   "status": "no_boundary",
+   "ring": [],
+   "closed": false,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525684709
+  },
+  "90-00361-P_001-002_0001_p1": {
+   "status": "no_boundary",
+   "ring": [],
+   "closed": false,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525693567
+  },
+  "90-00953_001-001_0002_p1": {
+   "status": "drawn",
+   "ring": [
+    [
+     529,
+     224
+    ],
+    [
+     528,
+     386
+    ],
+    [
+     518,
+     499
+    ],
+    [
+     706,
+     500
+    ],
+    [
+     706,
+     635
+    ],
+    [
+     796,
+     637
+    ],
+    [
+     795,
+     506
+    ],
+    [
+     987,
+     504
+    ],
+    [
+     979,
+     388
+    ],
+    [
+     707,
+     380
+    ],
+    [
+     705,
+     294
+    ],
+    [
+     686,
+     278
+    ],
+    [
+     659,
+     277
+    ],
+    [
+     645,
+     298
+    ],
+    [
+     641,
+     385
+    ],
+    [
+     627,
+     381
+    ],
+    [
+     629,
+     223
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525763597
+  },
+  "90-01100_001-002_0001_p1": {
+   "status": "drawn",
+   "ring": [
+    [
+     560,
+     576
+    ],
+    [
+     513,
+     651
+    ],
+    [
+     613,
+     716
+    ],
+    [
+     698,
+     585
+    ],
+    [
+     604,
+     522
+    ],
+    [
+     576,
+     558
+    ],
+    [
+     633,
+     599
+    ],
+    [
+     598,
+     643
+    ],
+    [
+     575,
+     626
+    ],
+    [
+     589,
+     599
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525776478
+  },
+  "91-00362-P_001-001_0001_p3": {
+   "status": "no_boundary",
+   "ring": [],
+   "closed": false,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525789112
+  },
+  "91-00630-P_001-001_0001_p4": {
+   "status": "drawn",
+   "ring": [
+    [
+     464,
+     636
+    ],
+    [
+     454,
+     648
+    ],
+    [
+     529,
+     700
+    ],
+    [
+     516,
+     670
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525797361
+  },
+  "91-00980-P_001-001_0002_p5": {
+   "status": "drawn",
+   "ring": [
+    [
+     287,
+     342
+    ],
+    [
+     296,
+     713
+    ],
+    [
+     572,
+     717
+    ],
+    [
+     574,
+     519
+    ],
+    [
+     506,
+     521
+    ],
+    [
+     509,
+     344
+    ],
+    [
+     478,
+     346
+    ],
+    [
+     478,
+     322
+    ],
+    [
+     410,
+     322
+    ],
+    [
+     410,
+     344
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525813701
+  },
+  "91-00984-P_001-001_0001_p2": {
+   "status": "no_boundary",
+   "ring": [],
+   "closed": false,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525817560
+  },
+  "91-01107-P_001-001_0001_p1": {
+   "status": "drawn",
+   "ring": [
+    [
+     709,
+     376
+    ],
+    [
+     706,
+     613
+    ],
+    [
+     758,
+     612
+    ],
+    [
+     763,
+     388
+    ],
+    [
+     719,
+     388
+    ],
+    [
+     719,
+     379
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525831094
+  },
+  "91-01254_001-001_0001_p3": {
+   "status": "drawn",
+   "ring": [
+    [
+     1359,
+     741
+    ],
+    [
+     1359,
+     1272
+    ],
+    [
+     1178,
+     1308
+    ],
+    [
+     864,
+     1310
+    ],
+    [
+     386,
+     1293
+    ],
+    [
+     179,
+     1275
+    ],
+    [
+     137,
+     1257
+    ],
+    [
+     106,
+     1213
+    ],
+    [
+     114,
+     1142
+    ],
+    [
+     277,
+     792
+    ],
+    [
+     494,
+     348
+    ],
+    [
+     521,
+     317
+    ],
+    [
+     588,
+     275
+    ],
+    [
+     854,
+     272
+    ],
+    [
+     1301,
+     259
+    ],
+    [
+     1298,
+     742
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525854416
+  },
+  "91-01330-P-FHS_001-001_0002_p2": {
+   "status": "no_boundary",
+   "ring": [],
+   "closed": false,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525860624
+  },
+  "92-00345-P_001-001_0001_p2": {
+   "status": "drawn",
+   "ring": [
+    [
+     753,
+     513
+    ],
+    [
+     647,
+     732
+    ],
+    [
+     690,
+     750
+    ],
+    [
+     798,
+     534
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525876692
+  },
+  "92-00426-P-FBN_001-001_0001_p4": {
+   "status": "drawn",
+   "ring": [
+    [
+     462,
+     276
+    ],
+    [
+     464,
+     314
+    ],
+    [
+     501,
+     309
+    ],
+    [
+     497,
+     274
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525885796
+  },
+  "92-01283-P_001-001_0001_p1": {
+   "status": "drawn",
+   "ring": [
+    [
+     760,
+     236
+    ],
+    [
+     764,
+     313
+    ],
+    [
+     858,
+     312
+    ],
+    [
+     864,
+     393
+    ],
+    [
+     1005,
+     399
+    ],
+    [
+     1005,
+     369
+    ],
+    [
+     1018,
+     347
+    ],
+    [
+     1053,
+     329
+    ],
+    [
+     1043,
+     251
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525901898
+  },
+  "93-00352-P_001-001_0001_p1": {
+   "status": "drawn",
+   "ring": [
+    [
+     672,
+     269
+    ],
+    [
+     691,
+     302
+    ],
+    [
+     683,
+     363
+    ],
+    [
+     664,
+     369
+    ],
+    [
+     656,
+     378
+    ],
+    [
+     660,
+     401
+    ],
+    [
+     677,
+     415
+    ],
+    [
+     693,
+     411
+    ],
+    [
+     704,
+     401
+    ],
+    [
+     704,
+     380
+    ],
+    [
+     706,
+     372
+    ],
+    [
+     769,
+     343
+    ],
+    [
+     711,
+     247
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525915800
+  },
+  "93-00362-P_001-001_0001_p1": {
+   "status": "drawn",
+   "ring": [
+    [
+     287,
+     166
+    ],
+    [
+     354,
+     246
+    ],
+    [
+     542,
+     136
+    ],
+    [
+     523,
+     106
+    ],
+    [
+     447,
+     120
+    ],
+    [
+     430,
+     115
+    ],
+    [
+     407,
+     129
+    ],
+    [
+     400,
+     118
+    ],
+    [
+     368,
+     125
+    ],
+    [
+     377,
+     140
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525927429
+  },
+  "93-00570-LB-93-767-P_001-002_0001_p2": {
+   "status": "drawn",
+   "ring": [
+    [
+     1076,
+     688
+    ],
+    [
+     1060,
+     762
+    ],
+    [
+     1130,
+     779
+    ],
+    [
+     1125,
+     807
+    ],
+    [
+     1142,
+     899
+    ],
+    [
+     1202,
+     704
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525935917
+  },
+  "93-01260-P_001-001_0001_p6": {
+   "status": "drawn",
+   "ring": [
+    [
+     295,
+     794
+    ],
+    [
+     305,
+     1026
+    ],
+    [
+     522,
+     1017
+    ],
+    [
+     515,
+     790
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525972819
+  },
+  "93-01316-P_001-001_0001_p1": {
+   "status": "drawn",
+   "ring": [
+    [
+     827,
+     600
+    ],
+    [
+     858,
+     692
+    ],
+    [
+     1023,
+     643
+    ],
+    [
+     1003,
+     579
+    ],
+    [
+     1032,
+     569
+    ],
+    [
+     1018,
+     529
+    ],
+    [
+     963,
+     554
+    ],
+    [
+     954,
+     541
+    ],
+    [
+     927,
+     546
+    ],
+    [
+     938,
+     563
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788525994973
+  },
+  "88-02270_001-001_0001_p6": {
+   "status": "drawn",
+   "ring": [
+    [
+     143,
+     345
+    ],
+    [
+     197,
+     343
+    ],
+    [
+     193,
+     469
+    ],
+    [
+     137,
+     466
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526003117
+  },
+  "88-02318-P_001-001_0001_p1": {
+   "status": "drawn",
+   "ring": [
+    [
+     337,
+     171
+    ],
+    [
+     434,
+     253
+    ],
+    [
+     403,
+     285
+    ],
+    [
+     349,
+     225
+    ],
+    [
+     318,
+     194
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526011291
+  },
+  "89-00455-P_001-001_0001_p11": {
+   "status": "drawn",
+   "ring": [
+    [
+     469,
+     175
+    ],
+    [
+     467,
+     277
+    ],
+    [
+     500,
+     278
+    ],
+    [
+     499,
+     225
+    ],
+    [
+     624,
+     223
+    ],
+    [
+     620,
+     178
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526018707
+  },
+  "89-00624-P_001-001_0001_p2": {
+   "status": "drawn",
+   "ring": [
+    [
+     384,
+     426
+    ],
+    [
+     413,
+     428
+    ],
+    [
+     415,
+     635
+    ],
+    [
+     385,
+     632
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526024831
+  },
+  "89-00931-P_001-001_0001_p7": {
+   "status": "drawn",
+   "ring": [
+    [
+     260,
+     354
+    ],
+    [
+     262,
+     438
+    ],
+    [
+     337,
+     443
+    ],
+    [
+     334,
+     353
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526031019
+  },
+  "89-01322-P_001-001_0002_p2": {
+   "status": "drawn",
+   "ring": [
+    [
+     381,
+     558
+    ],
+    [
+     335,
+     705
+    ],
+    [
+     479,
+     797
+    ],
+    [
+     499,
+     769
+    ],
+    [
+     507,
+     705
+    ],
+    [
+     413,
+     598
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526042750
+  },
+  "89-01810-P_001-001_0003_p2": {
+   "status": "drawn",
+   "ring": [
+    [
+     427,
+     499
+    ],
+    [
+     471,
+     567
+    ],
+    [
+     519,
+     545
+    ],
+    [
+     480,
+     474
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526050058
+  },
+  "89-01896_001-001_0001_p4": {
+   "status": "drawn",
+   "ring": [
+    [
+     277,
+     668
+    ],
+    [
+     271,
+     696
+    ],
+    [
+     347,
+     719
+    ],
+    [
+     396,
+     759
+    ],
+    [
+     449,
+     751
+    ],
+    [
+     503,
+     751
+    ],
+    [
+     505,
+     744
+    ],
+    [
+     504,
+     708
+    ],
+    [
+     482,
+     664
+    ],
+    [
+     443,
+     675
+    ],
+    [
+     385,
+     678
+    ],
+    [
+     381,
+     648
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526064882
+  },
+  "89-01912-P-89-01913-LB_001-001_0001_p1": {
+   "status": "drawn",
+   "ring": [
+    [
+     335,
+     390
+    ],
+    [
+     336,
+     508
+    ],
+    [
+     336,
+     635
+    ],
+    [
+     446,
+     636
+    ],
+    [
+     444,
+     784
+    ],
+    [
+     543,
+     787
+    ],
+    [
+     545,
+     608
+    ],
+    [
+     606,
+     611
+    ],
+    [
+     611,
+     622
+    ],
+    [
+     884,
+     625
+    ],
+    [
+     885,
+     736
+    ],
+    [
+     907,
+     736
+    ],
+    [
+     909,
+     780
+    ],
+    [
+     995,
+     777
+    ],
+    [
+     996,
+     628
+    ],
+    [
+     1051,
+     631
+    ],
+    [
+     1053,
+     544
+    ],
+    [
+     1001,
+     545
+    ],
+    [
+     1000,
+     511
+    ],
+    [
+     793,
+     512
+    ],
+    [
+     791,
+     473
+    ],
+    [
+     714,
+     473
+    ],
+    [
+     713,
+     461
+    ],
+    [
+     583,
+     463
+    ],
+    [
+     588,
+     389
+    ],
+    [
+     549,
+     387
+    ],
+    [
+     548,
+     376
+    ],
+    [
+     462,
+     375
+    ],
+    [
+     457,
+     399
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526098750
+  },
+  "90-00026-P_001-001_0002_p9": {
+   "status": "drawn",
+   "ring": [
+    [
+     371,
+     231
+    ],
+    [
+     371,
+     629
+    ],
+    [
+     379,
+     670
+    ],
+    [
+     391,
+     699
+    ],
+    [
+     428,
+     719
+    ],
+    [
+     496,
+     705
+    ],
+    [
+     557,
+     639
+    ],
+    [
+     586,
+     581
+    ],
+    [
+     588,
+     523
+    ],
+    [
+     573,
+     446
+    ],
+    [
+     569,
+     280
+    ],
+    [
+     497,
+     279
+    ],
+    [
+     496,
+     232
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526138756
+  },
+  "90-00302-LB_001-001_0001_p5": {
+   "status": "drawn",
+   "ring": [
+    [
+     547,
+     154
+    ],
+    [
+     619,
+     152
+    ],
+    [
+     621,
+     252
+    ],
+    [
+     548,
+     255
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526146509
+  },
+  "90-00366-P_001-001_0001_p5": {
+   "status": "drawn",
+   "ring": [
+    [
+     81,
+     166
+    ],
+    [
+     92,
+     985
+    ],
+    [
+     713,
+     969
+    ],
+    [
+     752,
+     935
+    ],
+    [
+     739,
+     879
+    ],
+    [
+     808,
+     881
+    ],
+    [
+     811,
+     564
+    ],
+    [
+     1067,
+     561
+    ],
+    [
+     1062,
+     147
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526157735
+  },
+  "90-00451-P_001-001_0001_p1": {
+   "status": "drawn",
+   "ring": [
+    [
+     866,
+     34
+    ],
+    [
+     859,
+     319
+    ],
+    [
+     979,
+     328
+    ],
+    [
+     1015,
+     41
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526163635
+  },
+  "90-00789-P_001-001_0001_p2": {
+   "status": "drawn",
+   "ring": [
+    [
+     348,
+     191
+    ],
+    [
+     354,
+     293
+    ],
+    [
+     475,
+     272
+    ],
+    [
+     473,
+     189
+    ],
+    [
+     354,
+     193
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526174639
+  },
+  "90-01309_001-001_0001_p1": {
+   "status": "drawn",
+   "ring": [
+    [
+     509,
+     654
+    ],
+    [
+     428,
+     781
+    ],
+    [
+     404,
+     816
+    ],
+    [
+     409,
+     847
+    ],
+    [
+     445,
+     893
+    ],
+    [
+     518,
+     816
+    ],
+    [
+     582,
+     690
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526182887
+  },
+  "90-01509-P_001-001_0001_p6": {
+   "status": "drawn",
+   "ring": [
+    [
+     159,
+     214
+    ],
+    [
+     155,
+     442
+    ],
+    [
+     192,
+     460
+    ],
+    [
+     236,
+     468
+    ],
+    [
+     276,
+     455
+    ],
+    [
+     376,
+     451
+    ],
+    [
+     386,
+     23
+    ],
+    [
+     213,
+     21
+    ],
+    [
+     210,
+     212
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526195491
+  },
+  "90-01780-P_001-001_0001_p1": {
+   "status": "drawn",
+   "ring": [
+    [
+     224,
+     637
+    ],
+    [
+     245,
+     670
+    ],
+    [
+     269,
+     773
+    ],
+    [
+     269,
+     809
+    ],
+    [
+     396,
+     973
+    ],
+    [
+     462,
+     1071
+    ],
+    [
+     555,
+     1179
+    ],
+    [
+     611,
+     1272
+    ],
+    [
+     720,
+     1349
+    ],
+    [
+     757,
+     1359
+    ],
+    [
+     886,
+     1144
+    ],
+    [
+     770,
+     1144
+    ],
+    [
+     854,
+     942
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526209215
+  },
+  "91-00185-P_001-001_0001_p6": {
+   "status": "drawn",
+   "ring": [
+    [
+     505,
+     901
+    ],
+    [
+     513,
+     1076
+    ],
+    [
+     513,
+     1138
+    ],
+    [
+     553,
+     1210
+    ],
+    [
+     615,
+     1266
+    ],
+    [
+     708,
+     1294
+    ],
+    [
+     665,
+     1238
+    ],
+    [
+     663,
+     908
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526219245
+  },
+  "91-00195-P_001-001_0002_p1": {
+   "status": "drawn",
+   "ring": [
+    [
+     228,
+     422
+    ],
+    [
+     199,
+     530
+    ],
+    [
+     246,
+     656
+    ],
+    [
+     330,
+     626
+    ],
+    [
+     275,
+     442
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526228432
+  },
+  "91-00507-P-F_001-002_0001_p3": {
+   "status": "drawn",
+   "ring": [
+    [
+     785,
+     135
+    ],
+    [
+     1230,
+     663
+    ],
+    [
+     1044,
+     808
+    ],
+    [
+     619,
+     269
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526237243
+  },
+  "91-01384-P_001-001_0001_p1": {
+   "status": "drawn",
+   "ring": [
+    [
+     328,
+     202
+    ],
+    [
+     327,
+     696
+    ],
+    [
+     499,
+     700
+    ],
+    [
+     498,
+     201
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526243739
+  },
+  "91-01395-P_001-001_0001_p4": {
+   "status": "drawn",
+   "ring": [
+    [
+     428,
+     795
+    ],
+    [
+     415,
+     828
+    ],
+    [
+     570,
+     847
+    ],
+    [
+     569,
+     834
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526253292
+  },
+  "92-00392_001-001_0001_rec1": {
+   "status": "drawn",
+   "ring": [
+    [
+     186,
+     952
+    ],
+    [
+     301,
+     892
+    ],
+    [
+     317,
+     945
+    ],
+    [
+     201,
+     1007
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526263928
+  },
+  "92-00486_001-001_0003_p1": {
+   "status": "drawn",
+   "ring": [
+    [
+     388,
+     204
+    ],
+    [
+     432,
+     339
+    ],
+    [
+     569,
+     396
+    ],
+    [
+     811,
+     495
+    ],
+    [
+     850,
+     514
+    ],
+    [
+     917,
+     328
+    ],
+    [
+     671,
+     244
+    ],
+    [
+     480,
+     188
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526273302
+  },
+  "92-00516_001-001_0001_p1": {
+   "status": "drawn",
+   "ring": [
+    [
+     695,
+     288
+    ],
+    [
+     691,
+     377
+    ],
+    [
+     799,
+     344
+    ],
+    [
+     799,
+     274
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526280912
+  },
+  "92-00855_001-001_0001_p2": {
+   "status": "drawn",
+   "ring": [
+    [
+     739,
+     160
+    ],
+    [
+     715,
+     1038
+    ],
+    [
+     1127,
+     1021
+    ],
+    [
+     1122,
+     162
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526291057
+  },
+  "92-00976_001-002_0003_p3": {
+   "status": "drawn",
+   "ring": [
+    [
+     506,
+     676
+    ],
+    [
+     555,
+     672
+    ],
+    [
+     567,
+     813
+    ],
+    [
+     517,
+     813
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526306394
+  },
+  "93-00579-P_001-001_0001_p10": {
+   "status": "drawn",
+   "ring": [
+    [
+     636,
+     496
+    ],
+    [
+     502,
+     581
+    ],
+    [
+     538,
+     643
+    ],
+    [
+     337,
+     741
+    ],
+    [
+     481,
+     856
+    ],
+    [
+     704,
+     983
+    ],
+    [
+     802,
+     1020
+    ],
+    [
+     901,
+     1025
+    ],
+    [
+     1000,
+     941
+    ],
+    [
+     936,
+     856
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526317952
+  },
+  "93-01583-P_001-001_0001_p1": {
+   "status": "drawn",
+   "ring": [
+    [
+     915,
+     615
+    ],
+    [
+     850,
+     665
+    ],
+    [
+     862,
+     679
+    ],
+    [
+     890,
+     664
+    ],
+    [
+     933,
+     632
+    ]
+   ],
+   "closed": true,
+   "note": "",
+   "sawAI": false,
+   "t": 1788526326408
+  }
+ },
+ "revision": "2026-09-04: four pages first labelled no_boundary were reviewed against v2's output and corrected to drawn. Two rings were judged accurate, two right-plot-but-loose. Their vertices come from v2, not from hand drawing -- see ring_source. This means the label set itself had a 4/62 error rate, all in one direction: 'I cannot find a boundary' is a weaker judgement than 'here is the boundary'."
+}
