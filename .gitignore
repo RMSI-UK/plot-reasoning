@@ -42,3 +42,29 @@ tmp_results/
 # Annotation-tool autosaves: serve_handlabel.py keeps the last 40 versions of each label
 # set on every write. Useful locally as a safety net, pure noise in history.
 find_plot_in_plan/labels/backups/
+
+# Processed results live in /data/<council>/ and are reached through symlinks
+# that are never tracked; no data file type is committed from here.
+outputs/
+out/
+tmp/
+tmp_eval/
+models/
+runs/
+results/
+demo_data/
+os_opendata/
+*.csv
+*.jsonl
+*.xlsx
+*.gpkg
+*.sqlite
+*.npz
+*.npy
+*.pt
+*.pth
+*.jpg
+*.jpeg
+*.png
+*.tif
+*.tiff
